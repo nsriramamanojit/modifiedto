@@ -1,0 +1,37 @@
+<style>#shellleft a:link{	
+	background-color:rgb(205, 237, 249);	
+}
+</style>
+<div id="shellcontainer">
+	<div id="shellleft">
+				<div align="center"><b><a href="/admin/services/new"><b>Add NewService</b></a></b></div><br/>
+		 <%if @services.blank? %>
+                <p>
+                    Currently No Services are available
+                </p>
+                <% else %>
+		<table  height="54" cellspacing="2" cellpadding="2"  align="center" width="700">
+                <tr align="center">
+				    <td  align="center" width="12%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Service Name</td>
+					<td  align="center" width="12%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Service Type</td>
+					<td  align="center" width="12%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Mode</td>
+				    <td align="center" width="12%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Service Charge</td>
+					<td align="center" width="12%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Edit</td>
+			    </tr>	
+				<% @services.each do |service| %>	
+				<tr align="center">
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/services/show/<%= service.id %>"><b><%=service.service_name%></b></a></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=Admin::Servicetype.find(service.servicetype_id,:select => 'service_type').service_type%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=service.service_mode%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=service.servicechargeamount%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/services/edit/<%=service.id%>">Edit</a></td>
+				</tr>
+				<% end %><!--end of iteration -->
+			</table>	
+			<% end %><!--end of if else (empty) -->
+		<br />
+			</div>
+				<% admin_relavant_info @services do |s|%>
+			<a href="/admin/services/show/<%=s.id%>"><%=s.service_name%></a><br/>
+				<% end %>	
+</div>

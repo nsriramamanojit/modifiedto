@@ -1,0 +1,377 @@
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="border: 1px solid rgb(240, 247, 232); background-color: rgb(255, 255, 255); font-family: georgia, verdana">
+    <tr>
+        <td colspan="3" bgcolor="#E9E9E9">
+            <% if @myanswer==0 %>
+            <font color="blue">
+                <b>Unattempted</b>
+            </font>
+            <% elsif @myanswer==@question.correct_answer.to_i %>
+            <font color="green">
+                <b>Correct</b>
+            </font>
+            <% else %>
+            <font color="red">
+                <b>Incorrect</b>
+            </font>
+            <% end %>
+        </td>
+    </tr>
+    <tr>
+        <td height="7">
+        </td>
+    </tr>
+    <tr valign="top">
+        <td style="padding-left: 10px;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td class="complete_question" width="63%">
+                        Topic:&nbsp;
+                        <font color="blue">
+                            <%=@question.topic %>
+                        </font>
+                    </td>
+                </tr>
+ <% if @question.question_media_type == 0 %>
+    <tr>
+      <td class="complete_question" width="63%">
+         <br/>
+         <b>Question >></b>
+      </td>
+    </tr>
+	<tr>
+      <td class="complete_question_text">
+              <%=@question.question_text %>
+      </td>
+   </tr>
+    <tr>
+        <td></td>
+    </tr>
+	 <tr>
+       <td class="complete_question">
+          <br/>
+       <b>Choices >></b>
+       </td>
+    </tr>
+	<!--options starts  -->
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==1 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>A.</b>
+                                        <%=@question.option1_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>A.</b>
+                                                    <%=@question.option1_text %>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==1 %>
+                                        <b>A.</b>
+                                        <%=@question.option1_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>A.</b>
+                                        <%=@question.option1_text %>
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==2 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>B.</b>
+                                        <%=@question.option2_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>B.</b>
+                                                    <%=@question.option2_text %>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==2 %>
+                                        <b>B.</b>
+                                        <%=@question.option2_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>B.</b>
+                                        <%=@question.option2_text %>
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==3 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>C.</b>
+                                        <%=@question.option3_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>C.</b>
+                                                    <%=@question.option3_text %>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==3 %>
+                                        <b>C.</b>
+                                        <%=@question.option3_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>C.</b>
+                                        <%=@question.option3_text %>
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==4 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>D.</b>
+                                        <%=@question.option4_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>D.</b>
+                                                    <%=@question.option4_text %>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==4 %>
+                                        <b>D.</b>
+                                        <%=@question.option4_text %>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>D.</b>
+                                        <%=@question.option4_text %>
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+	<!-- end of options -->
+<% else %>
+  <tr>
+      <td class="complete_question" width="63%">
+         <br/>
+         <b>Question >></b>
+      </td>
+    </tr>
+	<tr>
+      <td class="complete_question_text">
+             <img src="<%=@question.question_imagepath %>"/>
+      </td>
+   </tr>
+    <tr>
+        <td></td>
+    </tr>
+	 <tr>
+       <td class="complete_question">
+          <br/>
+       <b>Choices >></b>
+       </td>
+    </tr>
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==1 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>A.</b>
+                                       <img src="/<%=@question.option1_imagepath%>"/>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>A.</b>
+                                                   <img src="/<%=@question.option1_imagepath%>"/>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==1 %>
+                                        <b>A.</b>
+                                        <img src="/<%=@question.option1_imagepath%>"/>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>A.</b>
+                                        <img src="/<%=@question.option1_imagepath%>"/>
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==2 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>B.</b>
+                                       <img src="/<%=@question.option2_imagepath%>"/>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>B.</b>
+                                                   <img src="/<%=@question.option2_imagepath%>"/>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==2 %>
+                                        <b>B.</b>
+                                        <img src="/<%=@question.option2_imagepath%>"/>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>B.</b>
+                                        <img src="/<%=@question.option2_imagepath%>"/>
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==3 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>C.</b>
+                                       <img src="/<%=@question.option3_imagepath%>"/>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>C.</b>
+                                                   <img src="/<%=@question.option3_imagepath%>"/>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==3 %>
+                                        <b>C.</b>
+                                        <img src="/<%=@question.option3_imagepath%>"/>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>C.</b>
+                                        <img src="/<%=@question.option3_imagepath%>"/>
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+	<tr>
+		<td>
+			<div><img height="4" width="457" src="/images/white_top.gif"/>
+            </div>
+			<div class="quest_other_mid option">
+				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td>
+							 <% if @myanswer==4 %>
+                                        <% if  @myanswer==@question.correct_answer.to_i %>
+                                        <b>D.</b>
+                                       <img src="/<%=@question.option4_imagepath%>"/>&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>
+										    <% else %>
+                                                 <b>D.</b>
+                                                   <img src="/<%=@question.option4_imagepath%>"/>&nbsp;&nbsp;<img src="/images/wrong_tik.gif" alt="Wrong"/>
+										 <% end %>
+                               <%else %>
+                                        <%if @question.correct_answer.to_i==4 %>
+                                        <b>D.</b>
+                                         <img src="/<%= @question.option4_imagepath%>" />&nbsp;&nbsp;<img src="/images/right_tik.gif" alt="Right"/>&nbsp;&nbsp;
+                                        <br/>
+                                        <%else %>
+                                        <b>D.</b>
+										 <img src="/<%= @question.option4_imagepath%>" />       
+                                        <br/>
+                                        <% end %>
+                               <%end %>          
+						</td>
+					</tr>
+				</table>	
+			</div>
+			 <div><img height="4" width="457" src="/images/white_bottom.gif"/>
+             </div>	
+		</td>
+	</tr>
+	<tr><td height="10"/>
+    </tr>
+<% end %>  </table>
+        </td>
+    </tr>
+</table>

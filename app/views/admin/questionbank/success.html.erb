@@ -1,0 +1,19 @@
+
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="right"><a href="javascript:history.go(-1)"><b>Back</b></a></div><br>
+		<center><h3><font color="green">Question added succesfully...</font></h3></center>
+		<br/>
+		<div align="center"><a href="/admin/questionbank/edit_question/<%=@questionbank.id%>">Edit Question</a>&nbsp;<a href="/admin/questionbank/new">Add Another Question</a></div>
+		<br/>
+	</div>
+	<!--Related Information -->
+			<% admin_relavant_info @questions do |que|%>
+			<table><tr><td><font color="#08457E" size="3">Last Question Inserted is ,</font></td></tr>
+			<tr><td><b>Quetion Code : </b><a href="/admin/questionbank/edit_question/<%=que.id%>" title="Edit this Question"><%=que.question_code%></a></td></tr>
+			<tr><td><b>Subject Name : </b><%=que.subject_name%></td></tr>
+			<tr><td><b>Question Number : <font color="#DE3163" size="3"><%=que.question_number%></font></b></td></tr>
+			<tr><td><b>Internal Reference Number : </b><%=que.internal_ref_number%></td></tr>
+			</table>
+		   <% end %>		
+</div>

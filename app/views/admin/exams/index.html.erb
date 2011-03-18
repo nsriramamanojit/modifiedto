@@ -1,0 +1,53 @@
+<style>#shellleft a:link{	
+	background-color:rgb(205, 237, 249);	
+}
+</style>
+ <div id="shellcontainer">
+ 	
+	<div id="shellleft">
+		<div align="center"><a href="/admin/exams/new">Add New Exam</a></div>	
+		<br/>	
+		 <%if @exams.blank? %>
+                <p>
+                    Currently No Exam are available
+                </p>
+                <% else %>				
+		<table height="54" cellspacing="2" cellpadding="2" align="center" width="700">
+			
+                <tr><td width="18%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Exam Name</td>
+                    <td align="center" width="12%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Month/Year</td>
+					<td align="center" width="15%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Status</td>
+					<td align="center" width="30%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Number Of Days Scheduled</td>
+					<td align="center" width="25%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Starting Date</td>
+					<td align="center" width="30%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Edit</td>
+					 
+                </tr>	
+				<% @exams.each do |e| %>	
+				<tr>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/exams/show/<%=e.id%>"><%=e.ExamName%></a></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=e.InTheMonth%>/<%=e.InTheYear%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%= if e.ExamStatus == '1' 
+						"Enabled" 
+							elsif  e.ExamStatus == '0'
+						"Disabled"
+						end %>
+						</td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=e.NumDaysScheduled%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=e.ExamStartDate.strftime("%d/%m/%Y")%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/exams/edit/<%=e.id%>">Edit</a></td>
+					 
+				</tr>
+				<% end %><!--end of iteration -->
+			</table>	
+			<% end %><!--end of if else (empty) -->
+		<br />
+		
+			</div>
+			<!--Related Information -->
+			<% admin_relavant_info @exams do |exam|%>
+			<a href="/admin/exams/show/<%=exam.id%>"><%=exam.ExamName%></a><br/>
+				<% end %>
+			
+</div>
+ </div>
+ 

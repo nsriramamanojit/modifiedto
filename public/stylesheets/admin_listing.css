@@ -1,0 +1,38 @@
+table, td, th { 
+			border-color:gray;
+			}
+			table {
+			font-size:-moz-initial;
+			font-style:-moz-initial;
+			font-variant:-moz-initial;
+			font-weight:-moz-initial;
+			line-height:normal;
+			text-align:start;
+			white-space:normal;
+			}
+			.rtdetails {
+			color:#FFFFFF;
+			font-family:Verdana;
+			font-size:11px;			
+			font-size-adjust:none;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:bold;
+			height:15px;
+			line-height:normal;
+			padding-left:5px;
+			}
+			.mainscentry {
+			color:#000000;
+			font-family:Verdana,Arial;
+			font-size:13px;
+			font-size-adjust:none;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			line-height:normal;
+			padding-left:5px;
+			vertical-align:middle;
+			}

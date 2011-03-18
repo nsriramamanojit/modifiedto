@@ -1,0 +1,86 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="right"><a href="/admin/sectiontemplates/edit/<%= @sectiontemplate.id %>"><b>Edit this Template</b></a>|<a href="/admin/sectiontemplates/index"><b>Back</b></a></div><br>					
+		<table class="main_form" cellspacing="0" cellpadding="3" border="0"  width="700">
+				<tr><td colspan="2" align="center"><h3><font color="#993300">Sectiontemplate Details</font></h3></td></tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Examtemplate Name :</font></strong></td>					
+					<td> <%= Admin::Examtemplate.find(@sectiontemplate.ExamTemplate_Id).TemplateName %></td>
+				</tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Subject Id :</font></strong></td>	
+					<td><%= Admin::Subject.find(@sectiontemplate.Subject_Id).subject_name%></td>
+			    </tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Subject Code :</font></strong></td>	
+					<td><%= @sectiontemplate.SubjectCode %></td>
+			    </tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Section Title :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionTitle %></td>
+			    </tr>								
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Description :</font></strong></td>	
+					<td><textarea  rows="3" cols="35" readonly="true" ><%= @sectiontemplate.SectionDescription %></textarea></td>	
+			    </tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Instructions :</font></strong></td>	
+					<td><textarea  rows="3" cols="35" readonly="true" ><%= @sectiontemplate.SectionInstructions %></textarea></td>			
+			    </tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Single Attempt only :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionSingleAttemptOnly %></td>
+			    </tr>							
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Duration in Minutes :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionDurationMinutes %></td>
+			    </tr>							
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Number Of Questions :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionNumQuestions %></td>
+			    </tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Minimum Attempts :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionMinAttempts %></td>
+			    </tr>							
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Positive Marks :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionPositiveMarks %></td>
+			    </tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Negative Marks :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionNegativeMarks %></td>
+			    </tr>	
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Minimum Tag Match :</font></strong></td>	
+					<td><%= @sectiontemplate.SectionMinimumTagMatch %></td>
+			    </tr>						
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Section Tags:</font></strong></td>	
+					<td><textarea  rows="3" cols="35" readonly="true" ><%= @sectiontemplate.SectionTags %></textarea></td>	
+			    </tr>								
+				
+				<% if @sectiontemplate.Included == true%>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Section Included:</font></strong></td>	
+					<td>True</td>	
+			    </tr>
+				<%else%>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Section Included:</font></strong></td>	
+					<td>False</td>	
+			    </tr>
+				<%end%>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Section Status:</font></strong></td>	
+					<td><%= @sectiontemplate.SectionStatus %></td>	
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Suitable Question ChosenBy:</font></strong></td>	
+					<td><%= @sectiontemplate.SuitableQuestionChosenBy %></td>	
+			    </tr>
+				
+				
+				
+											
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Comments :</font></strong></td>				
+					<td> <textarea  rows="3" cols="35" readonly="true" ><%= @sectiontemplate.Comments %></textarea></td>			
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Created on :</font></strong></td>							
+					<td><%=h @sectiontemplate.created_at.strftime("%d/%m/%Y at %I:%M%p") %></td>	
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Updated on :</font></strong></td>							
+					<td><%=h @sectiontemplate.updated_at.strftime("%d/%m/%Y at %I:%M%p") %></td>	
+			    </tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+		</table><br/>
+ </div>
+			<!--Related Information -->
+			<% admin_relavant_info @sectiontemplates do |temp|%>
+		<a href="/admin/sectiontemplates/show/<%=temp.id%>"><%=temp.SectionTitle%></a><br/>
+				<% end %>
+</div>	
+
+

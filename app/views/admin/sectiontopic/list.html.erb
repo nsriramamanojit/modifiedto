@@ -1,0 +1,39 @@
+<style>#shellleft a:link{	
+	background-color:rgb(205, 237, 249);	
+}
+</style>
+<div id="shellcontainer">		
+	<div id="shellleft">
+	<div align="center"><a href="/admin/sectiontopic/new" >Add New SectionTopic</a></div>	<br/>
+		 <%if @sectiontopics.blank? %>
+                <p>
+                    Currently No SectionTopics are available
+                </p>
+                <% else %>
+		<table  height="54" cellspacing="2" cellpadding="2" align="center" width="700">
+                <tr><td align="center" width="15%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Id</td>
+                    <td align="center" width="30%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">MaxQuestions</td>
+					<td align="center" width="24%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">TotalQuestionsInSection</td>
+					<td align="center" width="24%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Topic</td>					
+					<td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Edit</td>
+					
+                </tr>	
+				<% @sectiontopics.each do |s| %>	
+				<tr>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=s.id%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=s.MaxQuestions%></td>	
+				    <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=s.TotalQuestionsInSection%></td>	
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=s.Topic%></td>				
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/sectiontopic/edit/<%=s.id%>" >edit</a></td>
+					</td>
+				</tr>
+				<% end %><!--end of iteration -->
+			</table>	
+			<% end %><!--end of if else (empty) -->
+		<br />
+			</div>
+			<!--Related Information -->
+			<% admin_relavant_info @sectiontopics do |sub|%>
+			<a href="/admin/sectiontopic/show/<%=sub.id%>"><%=sub.Topic%></a><br/>
+				<% end %>
+</div>

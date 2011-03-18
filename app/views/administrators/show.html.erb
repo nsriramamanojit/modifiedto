@@ -1,0 +1,21 @@
+<br/><br/><div align="center">
+<p>
+  <b>Name:</b>
+  <%=h @administrator.name %>
+</p>
+
+<p>
+  <b>Login:</b>
+  <%=h @administrator.login %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%=h @administrator.password %>
+</p>
+
+
+<%= link_to 'Edit', edit_administrator_path(@administrator) %> |
+<%= link_to 'Back', administrators_path %>
+</div>
+<br/>

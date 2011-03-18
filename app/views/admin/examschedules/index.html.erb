@@ -1,0 +1,53 @@
+<style>#shellleft a:link{	
+	background-color:rgb(205, 237, 249);	
+}
+</style>
+ <div id="shellcontainer">
+ 	
+	<div id="shellleft">
+		<div><center><a href="/admin/examschedules/new" >Add New Exam Schedule</a></center></div><br/>
+		 <%if @examschedules.blank? %>
+                <p>
+                    Currently No Exam Schedule are available
+                </p>
+                <% else %>
+					
+		<table class="main_form" height="54" cellspacing="1" cellpadding="2" border="1" align="center" width="700">			
+                <tr><td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Exam Id</th>
+                    <td align="center" width="14%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Exam Name</th>
+					<td align="center" width="18%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Exam Day Number</th>
+					<td align="center" width="18%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Status</th>
+					<td align="center" width="25%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Scheduled Date and Time</th>
+					<td align="center" width="8%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Edit</th>
+                </tr>	
+				<% @examschedules.each do |es| %>	
+				<tr>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=es.Exam_Id%></td>
+					<% @examname = Admin::Exam.find(es.Exam_Id)%>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/examschedules/show?examid=<%=es.Exam_Id%>"><%=@examname.ExamName%></a></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=es.ExamDayNumber%></td>
+					<% if es.ExamDayStatus == '1'%>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">Active</td>
+					<%else%>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">In Active</td>
+					<%end%>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=es.ScheduledDate.strftime("%d-%m-%Y")%> &nbsp; <%=es.ScheduledTime.strftime("%I:%M%p")%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/examschedules/edit?examid=<%=es.Exam_Id%>">Edit</a></td>
+				</tr>
+				<% end %><!--end of iteration -->
+			</table>	
+			<% end %><!--end of if else (empty) -->
+		<br />
+		
+			
+			</div>
+			<!--Related Information -->
+			<% admin_relavant_info @examnames do |exam|%>
+			<% @examname = Admin::Exam.find(exam.Exam_Id)%>
+			<a href="/admin/examschedules/show?examid=<%=exam.Exam_Id%>"><%=@examname.ExamName%></a><br/>
+				<% end %>
+			
+</div>
+ </div>
+
+  

@@ -1,0 +1,28 @@
+		<% form_for(:examschedule, @examschedule, :url => {:action=>'create'}) do |f| %>
+		  <%= f.error_messages %>
+		<table  class="main_form"  cellspacing="0" cellpadding="6" border="0" width="700">
+			<td align="center" valign="top" class="label"><strong>Exam Day Number :</strong></td>
+		<td align="center" valign="top" class="label"><strong>Scheduled Date :</strong></td>
+		
+		</tr>
+		
+	<%@date= Date.today%>
+<% @formatdate = @date.strftime("%B %d,%Y")%>
+	
+		<% i= 1 %>
+		<% i.upto(@exam.NumDaysScheduled) { %>
+		
+		<tr>
+		<td align="center" valign="top"> <%= text_field  'ExamDayNumber'+i.to_s ,{}%>
+		</td>
+			<td align="center" valign="top">
+				<%= calendar_date_select_tag "e_date_and_time_mixed"+i.to_s, @formatdate,:time => :mixed%>
+			</td>
+		</tr>
+		<% i = i+1 
+			}
+			%>
+			<tr><td colspan="2" align="center" valign="top"><%= f.submit "Create" %> </td></tr>
+	
+<%end%>
+</table>

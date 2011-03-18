@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>JTO - BSNL Demo Test Questions</title>
+        <%= javascript_include_tag 'prototype' %>
+        <%= stylesheet_link_tag 'teststyles' %>
+		<style type="text/css">
+.changeQuestionCss {
+font-size :30px;
+}
+
+#questiondisplayiframe {
+/*min-height: 400px;*/
+}
+
+</style>
+        <script>
+            function updateAnsHidden(question, option){
+                parent.document.getElementById('ans' + question).value = option;
+				parent.document.getElementById(question).style.backgroundColor = "#FE7979";
+				parent.document.getElementById(question).style.padding = "4px";				
+				parent.document.getElementById('rev' + question).innerHTML ='';		    }
+			//This function updates the question font size if user goes for review that wuestion
+			function changeRevQ(questionId){
+				parent.document.getElementById('rev' + questionId).innerHTML = "*";
+			}
+            
+            function setEarlierAnswer(selectedQuestion){
+                selectedAnswer = parent.document.getElementById('ans' + selectedQuestion).value
+                if (selectedAnswer == 0) {
+                    document.answerform.options[0].checked = false;
+                    document.answerform.options[1].checked = false;
+                    document.answerform.options[2].checked = false;
+                    document.answerform.options[3].checked = false;
+                }
+                else {
+                    document.answerform.options[parseInt(selectedAnswer) - 1].checked = true;
+                }
+            }
+            
+            function QSelected(id){
+                parent.document.getElementById('cf' + parent.document.getElementById('currentQpointer').value).innerHTML = " ";
+                parent.document.getElementById('cf' + id).innerHTML = ">>";
+                parent.document.getElementById('currentQpointer').value = id;
+            }
+        </script>
+    </head>
+    <body onLoad="setEarlierAnswer('q<%=@qId%>');" oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+        <!-- Question Number Div Starting here -->
+       <script type="text/javascript">
+// Disable F5 key
+function keyDownHandler(e) {
+if (e) { // Firefox
+// forbid browser's refresh
+e.preventDefault();
+// stop bubble
+e.stopPropagation();
+} else { // IE
+// We change the event key, because IE don't have a function
+// like preventDefault() or stopPropagation(). So that the keyboard event
+// isn't F5 event any more.
+window.event.keyCode = 0;
+// nothing to input
+return false;
+}
+}
+document.onkeydown = keyDownHandler; // register listener function
+// Now I think I make it very clear.
+</script>
+<div id="questiondisplayiframe">
+	    <div id="questionnumber">
+            <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                <tr>
+                    <td width="160" height="25" align="left" bgcolor="#CC0000" class="whitetext">
+          <div align="left">
+                  Question No: <%= @qId %>                        </div>                  </td>
+                  <td>                    </td>
+                    <td width="400" align="right">
+                        <div align="right">
+                           <b> Total number of questions answered in this section:<font color="#4F52EE"><%=@numQuestionsAttempted %></font></b>                        </div>                    </td>
+                </tr>
+                <tr>
+                  <td height="18" colspan="3" align="left" class="whitetext">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="top">                    </td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="left" valign="top"></td>
+                </tr>
+            </table>
+  </div>
+        <!-- End of Question number Div --><% if @question.question_media_type == 1 %>
+        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+            
+            <tr>
+                <td>
+                    <div align="left">
+                        <img src="/<%= @question.question_imagepath%>" /><!-- This input hidden field holds the id of current question to remember the answer --><input type="hidden" id="currQ" value="">
+                    </div>                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                    <div id="correctAnswer">                    </div>                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form name="answerform">
+                        <table width="100%" border="0" align="left" cellpadding="2" cellspacing="0" bordercolor="#333333">
+                            <tr>
+                                <td width="5">
+                                    <input type="radio" name="options" value="1" onclick="<%= remote_function(:url=>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'1',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',1);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <img src="/<%= @question.option1_imagepath%>" />                                    </div>                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="options" value="2" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'2',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',2);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <img src="/<%= @question.option2_imagepath%>" />                                    </div>                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="options" value="3" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'3',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',3);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <img src="/<%= @question.option3_imagepath%>" />                                    </div>                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="options" value="4" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'4',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',4);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <img src="/<%= @question.option4_imagepath%>" />                                    </div>                                </td>
+                            </tr>
+                        </table>
+                    </form>                </td>
+            </tr>
+        </table>
+<%else %><!-- if question is textual -->
+        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="left">
+                        <%=@question.question_text %><!-- This input hidden field holds the id of current question to remember the answer --><input type="hidden" id="currQ" value="">
+                    </div>                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                    <div id="correctAnswer">                    </div>                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form name="answerform">
+                        <table width="100%" border="0" align="left" cellpadding="2" cellspacing="0" bordercolor="#333333">
+                            <tr>
+                                <td width="5">
+                                    <input type="radio" name="options" value="1" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'1',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',1);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <%=@question.option1_text %>                                    </div>                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="options" value="2" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'2',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',2);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <%=@question.option2_text %>                                    </div>                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="options" value="3" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'3',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',3);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <%=@question.option3_text %>                                    </div>                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="options" value="4" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_answer',:sectTemId=>@secTemplateId,:checkedAnswer=>'4',:queId=>@qId})%>;updateAnsHidden('q<%=@qId%>',4);"/>                                </td>
+                                <td align="left">
+                                    <div align="left">
+                                        <%=@question.option4_text %>                                    </div>                                </td>
+                            </tr>
+                        </table>
+                    </form>                </td>
+            </tr>
+        </table>
+<br><br><br><br><br>
+        <% end %>
+        <% if @qId.to_i == 1 %>
+        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+                <td colspan="2" width="33%"> 
+                    <div align="left">
+                    </div>
+                </td>
+                <td width="33%">                  
+                  <div align="center"><a href="#" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_reviewflag',:sectTemId=>@secTemplateId,:queId=>@qId},:before => "Element.show('rspinner')",:success => "Element.hide('rspinner')")%>;changeRevQ('q<%=@qId%>');">
+                    <img src="/images/mark_the_question_for_review.png" alt="Mark this question for review" width="210" height="23" border="0" /></a>
+                    <img src="/images/rspinner.gif"  border ="0" id ="rspinner" style ="display: none;"  />
+                  </div></td>
+          <td align="right" width="33%">
+                    <div align="right">
+                        <a href="/demoqueoperations/get_next_question_by_srNo?qCode=<%=@question.question_code %>&qId=<%= (@qId) %>&secTId=<%=@secTemplateId%>" onClick="QSelected('q<%=@qId.to_i + 1%>');"><img src="/images/next_q.png" alt="Go to next question" width="147" height="23" border="0" /></a>
+                    </div>
+                </td>
+            </tr>
+        </table><% elsif @qId.to_i ==@studentPresentSection.NumQuestionsInSection %>
+        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+                <td colspan="2" width="33%">
+                    <div align="left">
+                        <a href="/demoqueoperations/get_previous_question_by_srNo?qCode=<%=@question.question_code %>&qId=<%= (@qId)%>&secTId=<%=@secTemplateId%>" onClick="QSelected('q<%=@qId.to_i - 1%>');"><img src="/images/previous_q.png" alt="Go to Previous Question" width="166" height="23" border="0" /><input type="hidden" id="previousQpointer" value="" /></a>
+                    </div>
+                </td>
+                <td width="33%">                  
+                  <div align="center"><a href="#" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_reviewflag',:sectTemId=>@secTemplateId,:queId=>@qId},:before => "Element.show('rspinner')",:success => "Element.hide('rspinner')")%>;changeRevQ('q<%=@qId%>');">
+                    <img src="/images/mark_the_question_for_review.png" alt="Mark this question for review" width="210" height="23" border="0" /></a>
+                    <img src="/images/rspinner.gif"  border ="0" id ="rspinner" style ="display: none;"  />
+                   </div></td>
+          <td align="right" width="33%">
+                    <div align="right">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <% else %>
+        <table width="100%" border="0" cellspacing="2" cellpadding="2">
+            <tr>
+                <td colspan="2" width="33%">
+                    <div align="left">
+                        <a href="/demoqueoperations/get_previous_question_by_srNo?qCode=<%=@question.question_code %>&qId=<%= (@qId)%>&secTId=<%=@secTemplateId%>" onClick="QSelected('q<%=@qId.to_i - 1%>');"><img src="/images/previous_q.png" alt="Go to Previous Question" width="166" height="23" border="0" /><input type="hidden" id="previousQpointer" value="" /></a>
+                    </div>
+                </td>
+                <td width="33%">                  
+                  <div align="center"><a href="#" onclick="<%= remote_function(:url =>{:controller => 'demoactivexam', :action => 'update_current_question_reviewflag',:sectTemId=>@secTemplateId,:queId=>@qId},:before => "Element.show('rspinner')",:success => "Element.hide('rspinner')")%>;changeRevQ('q<%=@qId%>');">
+                    <img src="/images/mark_the_question_for_review.png" alt="Mark this question for review" width="210" height="23" border="0" /></a>
+                    <img src="/images/rspinner.gif"  border ="0" id ="rspinner" style ="display: none;"  />
+                  </div></td>
+          <td align="right" width="33%">
+                    <div align="right">
+                        <a href="/demoqueoperations/get_next_question_by_srNo?qCode=<%=@question.question_code %>&qId=<%= (@qId) %>&secTId=<%=@secTemplateId%>" onClick="QSelected('q<%=@qId.to_i + 1%>');"><img src="/images/next_q.png" alt="Go to next question" width="147" height="23" border="0" /></a>
+                    </div>
+                </td>
+            </tr>
+        </table><% end %></div>
+    </body>
+</html>

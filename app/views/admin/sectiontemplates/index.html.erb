@@ -1,0 +1,53 @@
+<style>#shellleft a:link{	
+	background-color:rgb(205, 237, 249);	
+}
+</style> 
+ <div id="shellcontainer">
+	<div id="shellleft">
+		<div> <center><a href="/admin/sectiontemplates/new" >Add New Section Template</a></center></div>
+		<br/>
+		 <%if @sectiontemplates.blank? %>
+                <p>
+                    Currently No Section Templates are available
+                </p>
+                <% else %>
+		<table height="54" cellspacing="2" cellpadding="2"  align="center" width="700">
+				<!--<tr>
+					<td align="right" colspan='7'>
+						<input type="radio" id="status" name="status" checked="true" value="active">active
+						<input type="radio" id="status" name="status" value="inactive">inactive
+						</td>
+				</tr>	-->		
+                <tr><td align="center" width="18%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Section Title</td>
+    				<td align="center" width="20%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Description</td>
+    				<td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Subject</td>
+					<td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Duration in Minutes</td>
+					<td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Number of Questions</td>
+					<td align="center" width="15%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Edit Section</td>
+    				<td align="center" width="30%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">List Questions</td>
+                </tr>	
+				<% @sectiontemplates.each do |st| %>	
+				<% @subjectname = Admin::Subject.find(:all,:select=>'subject_name',:conditions=>["id=?",st.Subject_Id]) %>
+				<tr>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/sectiontemplates/show/<%=st.id%>"><%=st.SectionTitle%></a></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=st.SectionDescription%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=@subjectname[0].subject_name%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=st.SectionDurationMinutes%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=st.SectionNumQuestions%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/sectiontemplates/edit/<%=st.id%>">Edit</a></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/section_questions/listofSectionQ?SecId=<%=st.SectionTemplate_Id%>&ExamId=<%=st.ExamTemplate_Id%>&SubId=<%=st.Subject_Id%>&status=active">Active</a>&nbsp;<a href="/admin/section_questions/listofSectionQ?SecId=<%=st.SectionTemplate_Id%>&ExamId=<%=st.ExamTemplate_Id%>&SubId=<%=st.Subject_Id%>&status=inactive">Inactive</a></td>
+					 
+				</tr>
+				<% end %><!--end of iteration -->
+			</table>	
+			<% end %><!--end of if else (empty) -->
+		<br />
+			</div>
+			<!--Related Information -->
+			<% admin_relavant_info @sectiontemplates do |st|%>
+			<a href="/admin/sectiontemplates/show/<%=st.id%>"><%=st.SectionTitle%></a><br/>
+				<% end %>
+</div>
+ </div>
+
+  

@@ -1,0 +1,53 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+<% form_for(:examschedule, @examschedule, :url => {:action=>'update',:id => @examschedule}) do |f| %>
+  <%= f.error_messages %>
+ <div align="right"><a href="/admin/examschedules/index"><b>Back</b></a></div><br>
+<table  class="main_form"  cellspacing="0" cellpadding="4" border="0"  width="700">
+	<tr><td colspan="2">&nbsp;</td></tr>
+	<tr>
+		<td align="right" valign="top" class="label"><strong>Exam Name :</strong></td>
+		<td>
+			 <%= collection_select(:examschedule,:Exam_Id,@exams,:Exam_Id,:ExamName,{},:disabled=>'true') %>
+		</td>
+	</tr>
+	<tr><td colspan="2">&nbsp;</td></tr>
+	</table>
+	<div id="editschedule">
+		<table  class="main_form" cellspacing="0" cellpadding="0" border="0"  width="700">
+			
+			<tr>
+				<td align="center" valign="top" class="label"><strong>Exam Day Number :</strong></td>
+			<td align="center" valign="top" class="label"><strong>Scheduled Date :</strong></td>
+		</tr>
+		
+		<% i=1 %>
+		<% @examschedules.each do |exam| %>
+		<tr>
+			<td align="center" valign="top"> <%= f.text_field  'ExamDayNumber'+i.to_s ,:value =>exam.ExamDayNumber,:maxlength => '3',:size =>'30' %>
+		</td>
+			<td align="center" valign="top">
+				<% @val = exam.ScheduledDate.strftime("%d-%m-%Y")+" "+exam.ScheduledTime.strftime("%I:%M%p")%>
+				<%= calendar_date_select_tag "e_date_and_time_mixed"+i.to_s ,@val,:time => :mixed%>
+
+			</td>
+		</tr>
+		<tr><td colspan="2">&nbsp;</td></tr>
+		<% i=i+1 %>
+		<% end	%>
+		<tr><td colspan="2" align="center" valign="top"><%= f.submit "Update" %></td></tr>
+		<tr><td colspan="2">&nbsp;</td></tr>
+			</table>
+		</div>
+	
+<%end%>
+
+ </div>
+			<!--Related Information -->
+			<% admin_relavant_info @examnames do |exam|%>
+			<% @examname = Admin::Exam.find(exam.Exam_Id)%>
+			<a href="/admin/examschedules/show?examid=<%=exam.Exam_Id%>"><%=@examname.ExamName%></a><br/>
+				<% end %>
+</div>			
+
+	

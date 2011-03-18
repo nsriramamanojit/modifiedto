@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="JTO - BSNL Sample Tests provides a unique opportunity for applicants of JTO - BSNL Posts to analyse their skills by using JTO Mock Test Series.">
+<meta name="keywords" content="bsnl, bsnl jto, bsnl jto 2009, jto 2009, jto, bsnl jto mock tests, bsnl jto sample test, bsnl jto exam, bsnl jto test, bsnl jto entrance exam model paper, bsnl jto model papers">
+<title>LSSSA </title>
+<link rel="shortcut icon" href="/favicon.ico">
+
+ <%= stylesheet_link_tag 'teststyles' %>
+ <%= javascript_include_tag 'prototype','effects' %>
+ <script>
+ function setFirstQuestion(){
+ 		alert;
+		firstQpointer = document.getElementById('currentQpointer').value;
+		document.getElementById('cf' + firstQpointer).innerHTML = ">>";
+	}	
+	
+ </script>
+ </head>
+ 
+ <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;"> 
+ 
+        <!-- Question Number Div Starting here -->
+       <script type="text/javascript">
+// Disable F5 key
+function keyDownHandler(e) {
+if (e) { // Firefox
+// forbid browser's refresh
+e.preventDefault();
+// stop bubble
+e.stopPropagation();
+} else { // IE
+// We change the event key, because IE don't have a function
+// like preventDefault() or stopPropagation(). So that the keyboard event
+// isn't F5 event any more.
+window.event.keyCode = 0;
+// nothing to input
+return false;
+}
+}
+document.onkeydown = keyDownHandler; // register listener function
+// Now I think I make it very clear.
+</script>
+
+ <!-- DIV SHELL -- Outermost container -->
+<div id="shell">
+	<!-- DIV HEADER -- Container for Logo, Name and Timestamp -->
+	<div id="header">
+    <table width="100%" border="0" cellspacing="0" cellpadding="5" height="40" background="/images/header_bg.gif">
+
+	  <tr>
+			<!-- Logo - Need not edit this section - Standard dimensions: 106X26 Format: GIF File Name: logo.gif Align: Top-->
+            <td width="150" align="left" valign="top" bgcolor="#C7DBF8"><img src="/images/logosmall.png" /></td>
+			<!-- Insert the name of current mock test here -->
+           
+		   
+		   <%= yield %>
+		   <br/>
+		 <!-- DIV FOOTER  Credits, Copyright Information and Exit Button -->
+
+    <div id="footer1">
+      <table width="100%" border="0" cellspacing="0" cellpadding="5" background="/images/footer_bg.gif" height="35">
+          <tr>
+            <td align="left" width="220"></td>
+            <td align="right">Copyright &copy; 2011. All rights reserved.</td>
+             
+          </tr>
+
+	</table>
+
+    </div>
+</div>
+</body>
+</html>

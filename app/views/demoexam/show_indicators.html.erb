@@ -1,0 +1,28 @@
+<style type="text/css">
+.changeQuestionCss { 
+font-family:Lucida Sans Unicode,Verdana,Arial;
+background-color: #FE7979;
+font-weight:bold;
+width:30px;
+}
+.instruction{
+font-family:Lucida Sans Unicode,Verdana,Arial;
+color :#000000;	
+font-size:13px;
+}
+</style>
+<table width="100%" border="1" cellspacing="0" cellpadding="5" class="instruction">
+       	<tr bgcolor="#86C5F6"><td width="30%"><font color="white"><b>Symobol</b></font></td><td><font color="white"><b>Description</b></font></td></tr>
+       	<tr><td><input type="radio" name="notchecked" readonly="true"/></td><td align="left">Option not chosen</td></tr>
+		<tr><td><input type="radio" name="checked" checked="checked" readonly="true"/></td><td align="left">Option chosen.</td></tr>
+		<tr><td><b>Q1</b></td><td align="left">Question Number chosen in block color indicates that you have not yet attemted the question.</td></tr>
+		<tr><td><div class="changeQuestionCss">Q2</div></td><td align="left">Question Number chosen in red color with background indicates that you have answered the question.</td></tr>
+		<tr><td><b>*  Q3</b></td><td align="left">You have not yet answered the question,but marked it for coming back for review later,if time permits.</td></tr>
+		<tr><td><div class="changeQuestionCss">*Q4</div></td><td align="left">You have answered the question,but marked it for review later,if time permits.</td></tr>
+		<tr><td><b>Q5</b>  >></td><td align="left">Indicates the current question in the section</td></tr>
+		<tr><td><img src="/images/next_q.png" alt="Next Question"/></td><td align="left">Clicking on this will take you to the next question.</td></tr>
+		<tr><td><img src="/images/previous_q.png" alt="Previous Question"/></td><td align="left">Clicking on this will take you to the previous question.</td></tr>
+		<tr><td><img src="/images/mark_the_question_for_review.png" alt="Mark This Question For Review"/></td><td align="left">By clicking on this button,you can mark the question,
+		for review later.Please note that if you answer the question and mark for review the question will be treated as answered and evaluted even if you donot review it.
+		</td></tr>
+       </table>

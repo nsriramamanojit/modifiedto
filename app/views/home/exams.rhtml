@@ -1,0 +1,42 @@
+<tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="3" cellspacing="0">
+      <tr >
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="20"><div align="center">
+                <h1>LSSSA Tests</h1>
+            </div></td>
+          </tr>
+        </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td align="center" bgcolor="#FFFFCC">
+                <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFFFF">
+                  <tr>
+                    <td width="49%" height="250" colspan="3" align="center"><table width="95%" border="0" align="center" cellpadding="4" cellspacing="0">
+                      <% @paid_services.each do |pservice|%>
+					  <tr>
+                        <td><div class="testinfo"><%=pservice.service_name%></div>
+                       </td>
+                        <td width="210" align="center">
+                        	<% if pservice.service_enabled==true %>
+                      <a href="/verifyexam/password_required?examname=<%=pservice.service_name%>"><img src="/images/launchsampletest.png" alt="JTO - BSNL Sample Test Pack  |  Launch Sample Test &gt;" width="192" height="43" border="0" /></a>
+                           <% else %>
+                      <a href="/extraservices"><h1>Coming Soon</h1></a>
+					       <% end %>							
+							</td>
+                      <!-- <td align="center"><a href="#"><img src="/images/analyzetestscore.png" alt="Analyze your test score" width="192" height="43" border="0" /></a></td>-->
+					  </tr>
+                      
+                      <% end %>
+                    </table>                    
+                      </td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+          </table>
+          </td>
+      </tr>
+    </table></td>
+  </tr>

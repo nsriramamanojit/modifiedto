@@ -1,0 +1,115 @@
+
+<% form_for(:profile, @profile, :url => {:action=>'update_profile'}) do |f| %>
+ <tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <tr >
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="20"><div align="center">
+                <h1>BSNL JTO Sign-up</h1>
+            </div></td>
+          </tr>
+        </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+          	
+            <tr>
+              <td align="center" bgcolor="#FFFFCC">
+                <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFFFF">
+                  <tr><td colspan="4"><% flash.each do |key,value| %>
+                         <div id="flash" class="flash_<%= key %>" >
+                       <span class="message"><%= value %></span>
+                              </div>
+         <% end %></td></tr>
+				  <tr>
+                    <td colspan="3" align="left"></td>
+                    </tr>
+					 <tr>
+                    <td align="right" valign="middle"><h4>Full Name</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :name,:id=>'name' %>
+						<font color="red"><%= error_message_on @profile,'name'%></font>
+			            
+						</td>
+                  </tr>
+					 <tr>
+                    <td align="right" valign="middle"><h4>Mobile Number</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :mobile,:id=>'mobile'%>
+						<font color="red"><%= error_message_on @profile,'mobile'%></font>
+			  
+						</td>
+                  </tr>
+				   <tr>
+                    <td align="right" valign="middle"><h4>Landline Number</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :landline,:size=>35%>
+						<font color="red"><%= error_message_on @profile,'landline'%></font>
+						</td>
+						</td>
+                  </tr>
+					 <tr>
+                    <td align="right" valign="middle"><h4>Alternative Email Id</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :alt_email %>
+						</td>
+                  </tr>
+				   <tr>
+                    <td align="right" valign="middle"><h4>Adreess</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_area :address ,:rows=>3,:cols=>30%>
+						</td>
+                  </tr>
+				  <tr>
+                    <td align="right" valign="middle"><h4>City</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :city,:size=>35 %>
+						</td>
+                  </tr>
+				   <tr>
+                    <td align="right" valign="middle"><h4>State</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :state,:size=>35 %>
+						</td>
+                  </tr>
+				   <tr>
+                    <td align="right" valign="middle"><h4>Country</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :country,:size=>35 %>
+						</td>
+                  </tr>
+				  
+				   
+				  
+				  <tr align="center">
+                    <td align="right" valign="middle"></td>
+                    <td align="center" valign="middle"></td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.submit 'Update My Profile' %>
+						</td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+          </table>
+          </td>
+      </tr>
+    </table></td>
+  </tr>
+<% end %>

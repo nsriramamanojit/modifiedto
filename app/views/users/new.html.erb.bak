@@ -1,0 +1,72 @@
+ <tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <tr >
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="20"><div align="center">
+                <h1>JTO - BSNL Sign-up</h1>
+            </div></td>
+          </tr>
+        </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td align="center" bgcolor="#FFFFCC"><% form_for :user, :url => users_path do |f| -%>
+                <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFFFF">
+                  <tr>
+                    <td colspan="3" align="left"><%= error_messages_for :user %></td>
+                    </tr>
+                  <tr>
+                    <td align="right" valign="middle"><h4>Valid E-Mail Address</h4></td>
+                    <td align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	
+						<%= f.text_field :email,:size=>35 %>
+						</td>
+                  </tr>
+                  <tr>
+                    <td width="49%" align="right" valign="middle"><h4>Enter a User Name</h4></td>
+                    <td width="3" align="center" valign="middle">:</td>
+                    <td width="49%" align="left" valign="middle"><h4>
+                      <label>
+                     <!-- <input name="textfield" type="text" id="textfield" size="35" /> -->
+					  <%= f.text_field :login ,:size=>35%>
+                      </label>
+                    </h4></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="middle"><h4>Enter a Password</h4></td>
+                    <td width="3" align="center" valign="middle">:</td>
+                    <td align="left" valign="middle"><h4>
+                   <!--   <input name="textfield2" type="password" id="textfield2" size="35" /> -->
+				   <%= f.password_field :password ,:size=>35%>
+                    </h4></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="middle"><h4>Confirm Password</h4></td>
+                    <td width="3" align="center" valign="middle">:</td>
+                    <td align="left" valign="middle">
+                    	<!--<input name="textfield3" type="password" id="textfield3" size="35" /> -->
+						<%= f.password_field :password_confirmation ,:size=>35%>
+						
+						</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" align="center" valign="middle" bgcolor="#FFFFCC">Your E-Mail ID is important to activate your test account. If you donot have an e-mail ID, please take few minutes to create one using the following link: <a href="http://mail.google.com/mail/signup" target="_blank">GMail - Free e-mail from Google</a></td>
+                    </tr>
+                  <tr>
+                    <td height="35" colspan="2" align="right" valign="middle"><label>
+                      <input name="checkbox" type="checkbox" id="checkbox" checked="checked" />
+                    </label>
+                    I accept terms and conditions</td>
+                    <td align="left" valign="middle"><label>
+                      <input name="button" type="submit" id="button" value="Click here to register &gt;" />
+                    </label></td>
+                  </tr>
+                </table>
+                <% end %>             </td>
+              </tr>
+          </table>
+          </td>
+      </tr>
+    </table></td>
+  </tr>

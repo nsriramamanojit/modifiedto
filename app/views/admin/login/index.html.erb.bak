@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/xhtml1-loose.dtd">
+<html>
+<head>
+<style>
+#pagecontainer{
+	margin-top: 10%;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+#loginbox{
+	padding : 20px;
+	background-color: #c7dbf8;
+	border: 1px solid #90b5ed;
+}
+</style>
+</head>
+<body>
+	<% form_tag(:action => 'index') do %>
+<div id="pagecontainer">
+	<div id="loginbox">
+	<img src="/images/logo.gif"/><br>
+	<h3>Portal Administration</h3> 	
+	<hr>
+	<form method="post" action="#">
+	<table>
+		<tr><td><%=flash[:info]%><%= '<font face="Verdana" color="#e30102" size="2">'+@auth_error+'</font><hr/>' if @auth_error %></td></tr>
+	<tr><td><b>Admin login:</b></td></tr>
+	<tr><td><%= text_field_tag :login, params[:login] ,:size=>25, :maxlength=>25%></td></tr>
+	<tr><td><b>Password :</b></td></tr>
+	<tr><td><%= password_field_tag :password, params[:password],:size=>25 %></td></tr>
+	<tr><td><%= submit_tag "Login" %> <input type="reset" name="reset" value="Clear"></td></tr>
+</table>
+</form>
+	</div>
+</div>
+<% end %>
+
+</body>
+</html>

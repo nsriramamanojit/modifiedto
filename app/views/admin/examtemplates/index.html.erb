@@ -1,0 +1,45 @@
+<style>#shellleft a:link{	
+	background-color:rgb(205, 237, 249);	
+}
+</style>
+ <div id="shellcontainer">
+ 	
+	<div id="shellleft">
+		<div><center><a href="/admin/examtemplates/new" >Add New Exam Template</a></center></div>
+		<br/>
+		 <%if @examtemplates.blank? %>
+                <p>
+                    Currently No Exam Templates are available
+                </p>
+                <% else %>
+		<table  height="54" cellspacing="2" cellpadding="2"  align="center" width="700">
+			
+                <tr><td align="center" width="18%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Template Name</td>
+                  	<td align="center" width="25%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Number Of Sections</td>
+					<td align="center" width="32%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Total Duration In Minutes</td>
+					<td align="center" width="32%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Description</td>
+					<td align="center" width="32%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Edit</td>
+                </tr>	
+				<% @examtemplates.each do |et| %>	
+				<tr>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/examtemplates/show/<%=et.id%>"><%=et.TemplateName%></a></td>
+					 
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=et.NumberOfSections%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=et.TotalDurationMinutes%></td>
+					
+					<td align="left" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=et.TemplateDescription%></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/examtemplates/edit/<%=et.id%>">Edit</a></td>
+					 
+				</tr>
+				<% end %><!--end of iteration -->
+			</table>	
+			<% end %><!--end of if else (empty) -->
+		<br />
+			</div>
+			<!--Related Information -->
+			<% admin_relavant_info @examtemplates do |exam|%>
+			<a href="/admin/examtemplates/show/<%=exam.id%>"><%=exam.TemplateName%></a><br/>
+				<% end %>
+			
+</div>
+ </div>

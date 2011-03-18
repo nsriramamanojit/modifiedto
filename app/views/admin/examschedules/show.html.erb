@@ -1,0 +1,43 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="right"><a href="/admin/examschedules/edit?examid=<%=@examschedule[0].Exam_Id%>"><b>Edit this Schedule</b></a>|<a href="/admin/examschedules/index"><b>Back</b></a></div><br>
+		<table class="main_form" cellspacing="0" cellpadding="4" border="0" width="700">
+				<tr><td colspan="2" align="center"><h3><font color="#993300">Exam Schedule Information</font></h3></td></tr>				
+                    <td width="10%" align="center" valign="top" class="label"><strong><font color="#993300">Exam Name</font></strong></td>			
+					<td width="6%" align="left" valign="top" class="label"><strong><font color="#993300">Exam Day Number</font></strong></td>
+					<td width="7%" align="left" valign="top" class="label"><strong><font color="#993300">Status</font></strong></td>
+					<td width="8%" align="left" valign="top" class="label"><strong><font color="#993300">Scheduled Date and Time</font></strong></td>
+                </tr>
+				<%i=0%>	
+				<% until i == @examschedule.size  %>	
+				<tr>
+					<%if i==0%>
+					<% @examname = Admin::Exam.find(@examschedule[0].Exam_Id)%>
+					<td align="center" valign="top" class="label"><%=@examname.ExamName%></td>
+					<%else%>
+					<td align="center" valign="top" class="label"></td>
+					<%end%>
+					<td><%=@examschedule[i].ExamDayNumber%></td>
+					<% if @examschedule[i].ExamDayStatus == '1'%>
+					<td>Active</td>
+					<%else%>
+					<td>In Active</td>
+					<%end%>
+					<td><%=@examschedule[i].ScheduledDate.strftime("%d-%m-%Y")%> &nbsp; <%=@examschedule[i].ScheduledTime.strftime("%I:%M%p")%></td>
+				</tr>
+				<%i=i+1%>
+				<%end%>
+				
+				<tr><td colspan="2">&nbsp;</td></tr>			
+		</table><br>
+		
+		<br />
+		</div>	
+		<!--Related Information -->
+			<% admin_relavant_info @examnames do |exam|%>
+			<% @examname = Admin::Exam.find(exam.Exam_Id)%>
+			<a href="/admin/examschedules/show?examid=<%=exam.Exam_Id%>"><%=@examname.ExamName%></a><br/>
+			<% end %>	
+			
+</div>
+

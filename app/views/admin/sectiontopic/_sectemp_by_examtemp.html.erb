@@ -1,0 +1,10 @@
+
+
+
+
+<%= collection_select(:sectiontopic,:SectionTemplate_id,@sectiontemplates,:id, :SectionTitle, {:prompt   => '- - Select Section Template- -'},
+                                               {:onchange => "#{remote_function(:url  => {:action => "update_subtemplate"},
+                                                 :with => "'examtmpid='+value")}"}) %>
+	
+	
+													   

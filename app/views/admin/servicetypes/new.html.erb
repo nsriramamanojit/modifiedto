@@ -1,0 +1,57 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="right"><a href="/admin/servicetypes/index"><b>Back</b></a></div><br>
+<% form_for(:servicetype, @servicetype, :url => {:action=>'create'}) do |form| %>
+			<table class="main_form"  cellspacing="0" cellpadding="4" border="0"  width="700">
+				<tr><td align="center" colspan="2"><h3><font color="green">Add NewServiceType</font></h3></td></tr>
+				<tr>
+					<td colspan="2" align="center">
+						<font size="-1" color="#ff0000">Note:Fields marked with(*)are compulsory. </font>
+					</td>
+				</tr>			
+				<tr><td align="right" valign="top" class="label"><strong>ServiceType Name<font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>			
+					<td><%= form.text_field :service_type ,:size=>'45' ,:maxlength=>'45',:id=>'servicetype' %>
+					<font color="red"><%= error_message_on @servicetype,'service_type'%></font>
+					<script type="text/javascript">
+						var servicetype = new LiveValidation('servicetype',{onlyOnSubmit: true});
+						servicetype.add( Validate.Presence);
+					</script>	
+					</td>			
+				</tr>						
+				<tr><td align="right" valign="top" class="label"><strong>Description :</strong></td>						
+					<td><%= form.text_area :servicetype_description ,:cols=>35 ,:rows=>2,:id=>'servicetypedes',:maxlength=>500%>
+					
+								<script type="text/javascript">
+						var servicetypedes = new LiveValidation('servicetypedes');					
+						servicetypedes.add(  Validate.Length, { maximum: 500 } )
+					</script>
+					</td>				
+				</tr>							
+				<tr><td align="right" valign="top" class="label"><strong>Enabled<font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+					<td>
+						<input type="radio" id="servicetype_enabled" name="servicetype[servicetype_enabled]" value="1" />True
+						<input type="radio" id="servicetype_enabled" name="servicetype[servicetype_enabled]" value="0" checked = "true" />False
+						
+					</td>			
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Comments :</strong></td>				
+					<td><%= form.text_area :comments ,:rows=>"2" ,:cols=>"35",:id=>"comments",:maxlength=>500 %>
+					
+								<script type="text/javascript">
+						var comments = new LiveValidation('comments');					
+						comments.add(  Validate.Length, { maximum: 500 } )
+					</script>
+								</td>
+				</tr>				
+				<tr><td colspan="2" align="center"><%= submit_tag "Add ServiceType" %>
+					<input type="reset" value="Reset" name="Cancel"/>
+					</td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+			</table>
+			<% end %><!--end of form -->
+			</div>
+			<% admin_relavant_info @servicetypes do |exam|%>
+			<a href="/admin/servicetypes/show/<%=exam.id%>"><%=exam.service_type%></a><br/>
+				<% end %>
+</div>			

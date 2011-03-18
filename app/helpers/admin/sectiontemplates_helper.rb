@@ -1,0 +1,2 @@
+module Admin::SectiontemplatesHelper
+end

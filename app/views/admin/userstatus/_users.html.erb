@@ -1,0 +1,49 @@
+<div class="cont">
+    <div id="shellcontainer">
+          <table height="54" cellspacing="0" cellpadding="2" align="center" width="700">
+            <tr align="center">
+                <td align="center" style="background:#CDEDF9">
+                  Found <b><%= pluralize(@users.total_entries, "match") %></b>.
+<%first_item =@users.offset + 1%>
+<% last_item = first_item + @users.length - 1%>
+    Displaying users <b><%=first_item %>–<%=last_item  %></b>
+
+
+                </td>
+                   </tr>
+        </table>
+		<table height="54" cellspacing="2" cellpadding="2" align="center" width="700">
+            <tr align="center">
+                <td align="center" width="1%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                    User Id
+                </td>
+                <td align="center" width="5%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                    Login Name
+                </td>
+                <td align="center" width="5%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                    Email
+                </td>
+				<td align="center" width="12%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                    On Date
+                </td>
+            </tr>
+			<% @users.each do |users| %>
+			<tr align="center">
+                <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                    <%= users.id %>
+                </td>
+                <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                    <%= users.login %>
+                </td>
+                <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                    <%= users.email %>
+                </td>
+				<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                    <%= users.updated_at.strftime('%d-%m-%Y %H:%M:%S')  %>
+                </td>
+            </tr>
+			<% end %>
+			<tr><td colspan="3" align="right"><%= will_paginate @users%></td></tr>
+			</table>
+    </div>
+</div>

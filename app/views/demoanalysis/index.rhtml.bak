@@ -1,0 +1,105 @@
+<tr>
+    <td bgcolor="#FFFFFF">
+        <table width="99%" border="0" align="center" cellpadding="3" cellspacing="0">
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td height="20">
+                                <div align="center">
+                                    <h1>LSSSA Demo Test Score Card and Analysis</h1>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                        <tr>
+                            <td align="center" bgcolor="#FFFFCC">
+                                <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFFFF">
+                                    <tr><td colspan="4" align="right"><a href="/demoanalysis/questionwise"><b>Click here to get Question-wise Analysis</b></a></td></tr>
+                                    <tr align="center">
+                                        <td>
+                                           <h4> Congratulations!! You have successfully completed the <%=session[:examName] %></h4>
+                                        </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td>
+                                            <%= @graph %>
+                                        </td>
+                                    </tr>
+									<tr align="center">
+                                        <td>
+                                            <%= @graph1 %>
+                                        </td>
+                                    </tr>
+									<tr><td align="center">
+										<font color="red">Note:-</font><font color="#002995"> Percentage of correct answers in each topic is shown above. <br>
+										      Higher percentage values in a topic means your performance was good in that topic. <br>
+											  Similarly, lower percentage values in a topic means your performance was average or poor in that topic.</font><br>
+									</td></tr>
+                                    <tr align="center">
+                                        <td>
+                                           
+                                                <h4>The following are Section-wise scores:
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <% if @demoexamsections.blank? %>
+                                            <p>
+                                                <!--Record Not Available -->
+                                            </p>
+                                            <% else %>
+                                            <table width="99%" cellpadding="0" align="center">
+                                                <tr>
+                                                    <td align="center" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                                                        Section Name
+                                                    </td>
+                                                    <td align="center" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                                                        Number Of Questions in Section
+                                                    </td>
+                                                    <td align="center" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                                                        Number Of Questions Attempted
+                                                    </td>
+                                                    <td align="center" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                                                        Correct Answers
+                                                    </td>
+                                                    <td align="center" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">
+                                                        InCorrect Answers
+                                                    </td>
+                                                </tr>
+                                                <% @demoexamsections.each do |score| %>
+                                                <tr>
+                                                    <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                                                        <b><%= score.SectionTitle %></b>
+                                                    </td>
+                                                    <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                                                        <%= score.NumQuestionsInSection %>
+                                                    </td>
+                                                    <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                                                        <%= score.NumQuestionsAttempted %>
+                                                    </td>
+                                                    <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                                                        <%= score.NumAnswersCorrect %>
+                                                    </td>
+                                                    <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry">
+                                                        <%= score.NumAnswersIncorrect %>
+                                                    </td>
+                                                </tr>
+                                                <% end %>
+												<tr><td></td></tr>
+												<tr><td colspan="5" align="right"><a href="/demoanalysis/questionwise"><b>Click here to get Question-wise Analysis</b></a></td></tr>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <font color="#396FAF">
+                                                            Please write to <a href="#"><b>bsnljto.com@gmail.com</b></a>
+                                                            for any queries and suggestions.
+                                                        </font>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <% end %>
+                                        </td>
+                                    </tr>
+                                </table>

@@ -1,0 +1,29 @@
+
+<% if searchresults.length == 0 %>
+<p align="center"><font color="#E32636">Your search for “<b><%=params[:query]%></b>” returned 0 results. Please try again using different keywords.
+ </font></p>
+<% elsif params[:query] == "" %>
+  <p align="center"><font color="#E32636">You must enter a search term(Can't empty)</font></p>
+<% else %>
+
+<p align="center">Total <font color="#B22222" size=="4"><%=@questions.size%></font> records are found!!!</p>	
+	<table class="main_form" height="54" cellspacing="0" cellpadding="0" border="0" align="center" width="800">
+	  <tr><th>Subject Name</th>
+	  <th>Internal Ref Num</th>
+	  <th>Tags</th>
+	  <th>Question Code</th>
+		  <th>Question Number</th>
+		 <th>Status</th>		
+	  </tr>
+	  <%@questions.each do |que|%>
+	  <tr><td align="center" class="f13"><%=que.subject_name%></td>
+	  	  <td align="center" class="f13"><%=que.internal_ref_number%></td>	
+		  <td align="center" class="f13"><%=que.tags%></td>	
+	  	  <td align="center" class="f13"><a href="/admin/questionbank/edit_question/<%=que.id%>" title="Edit this question"><%=que.question_code%></a></td>
+		  <td align="center" class="f13"><%=que.question_number%></td>
+		 <td align="center" class="f13"><%if que.enabled==1%>Enable<% else%>Disable<% end %></td>	
+	  </tr>
+	  <% end %> <!-- End of iteration -->
+	</table><br/>
+
+<% end %><!-- end of else -->

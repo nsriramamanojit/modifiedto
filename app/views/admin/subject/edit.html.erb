@@ -1,0 +1,67 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+				<div align="right"><a href="/admin/subject/list"><b>Back</b></a></div><br>
+		<% form_for(:subject, @subject, :url => {:action=>'update',:id => @subject}) do |form| %>
+          <!--<font face="Verdana" color="#e30102" size="-2"><%= form.error_messages %></font> -->
+			<table class="main_form"  cellspacing="0" cellpadding="4" border="0" width="700">
+				<tr><td  align="center" colspan="2"><h3><font color="green">Edit Subject</font></h3></td></tr>
+				<tr>
+					<td colspan="2" align="center">
+						<font size="-1" color="#ff0000">
+						Note:Fields marked with (*)	are compulsory. 					
+							</font>
+					</td>
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Subject Code <font face="Verdana" color="#e30102" size="-2">*</font>:</strong></td>			
+					<td><%= form.text_field :subject_code ,:size=>'45' ,:maxlength=>'1',:id=>'subject_code'%>
+					
+					<font color="red"><%= error_message_on @subject,'subject_code'%></font>
+					<script type="text/javascript">
+						var subject_code = new LiveValidation('subject_code',{onlyOnSubmit: true});
+						subject_code.add( Validate.Presence);
+					</script>
+					</td>					
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Subject Name <font face="Verdana" color="#e30102" size="-2">*</font>:</strong></td>				
+					<td><%= form.text_field :subject_name ,:size=>'45' ,:maxlength=>'45',:id=>'subject_name' %>
+					
+					<font color="red"><%= error_message_on @subject,'subject_name'%></font>
+					<script type="text/javascript">
+						var subject_name = new LiveValidation('subject_name',{onlyOnSubmit: true});
+						subject_name.add( Validate.Presence);
+					</script>
+					</td>				
+				</tr>							
+				<tr><td align="right" valign="top" class="label"><strong>Subject Description :</strong></td>					
+					<td><%= form.text_area :subject_description ,:rows=>2,:cols=>35,:maxlength=>'500',:id=>'description' %>
+					
+					<font color="red"><%= error_message_on @subject,'subject_description'%></font>
+					<script type="text/javascript">
+						var description = new LiveValidation('description');
+						description.add(  Validate.Length, { maximum: 500 })
+					</script>
+					</td>					
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Comments :</strong></td>					
+					<td><%= form.text_area :comments ,:rows=>2,:cols=>35,:maxlength=>'500',:id=>'comments' %>
+					
+					<font color="red"><%= error_message_on @subject,'comments'%></font>
+					<script type="text/javascript">
+						var comments = new LiveValidation('comments');
+						comments.add(  Validate.Length, { maximum: 500 } )
+					</script>
+					</td>				
+				</tr>				
+				<tr><td colspan="2" align="center"><%= submit_tag "Edit Subject" %>
+					<input type="reset" value="Reset" name="Cancel"/>
+					</td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+			</table>
+			<% end %><!--end of form -->
+	</div>
+			<!--Related Information -->
+			<% admin_relavant_info @subjects do |sub|%>
+			<a href="/admin/subject/show/<%=sub.id%>"><%=sub.subject_name%></a><br/>
+				<% end %>
+</div>			

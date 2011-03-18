@@ -1,0 +1,43 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="right"><a href="/admin/sectiontopic/edit/<%= @sectiontopic.id %>"><b>Edit this Section Topic</b></a>|<a href="/admin/sectiontopic/index"><b>Back</b></a></div><br>
+		<table class="main_form"  cellspacing="0" cellpadding="4" border="0"  width="700">			
+				<tr><td colspan="2" align="center"><h3><font color="#993300">SectionTopic Details</font></h3></td>	</tr>			
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Exam Template Id :</font></strong></td>					
+					<td> <%=Admin::Examtemplate.find(@sectiontopic.ExamTemplate_id).TemplateName %></td>
+				</tr>
+								
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Topic :</font></strong></td>					
+					<td> <%= @sectiontopic.Topic %></td></td>
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">MaxQuestions :</font></strong></td>					
+					<td><%= @sectiontopic.MaxQuestions %></td>
+			    </tr>	
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Total Number Of Questions :</font></strong></td>					
+					<td><%= @sectiontopic.TotalQuestionsInSection %></td>
+			    </tr>				
+								
+					<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Exam Status :</font></strong></td>						
+					<td><%= if @sectiontopic.Enabled == '1' 
+						"Enabled" 
+							else 
+						"Disabled"
+						end %> </td>
+			    </tr>				
+					
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Comments :</font></strong></td>				
+					<td> <textarea  rows="3" cols="35" readonly="true" ><%= @sectiontopic.Comments %></textarea></td>			
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Created on :</font></strong></td>							
+					<td><%=h @sectiontopic.created_at.strftime("%d/%m/%Y at %I:%M%p") %></td>	
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Updated on :</font></strong></td>							
+					<td><%=h @sectiontopic.updated_at.strftime("%d/%m/%Y at %I:%M%p") %></td>	
+			    </tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+		</table>
+		<br />
+    </div>	
+						
+</div>
+			

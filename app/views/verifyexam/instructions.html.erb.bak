@@ -1,0 +1,51 @@
+ <script type="text/javascript">
+<!--
+function popup(url)
+{
+ params  = 'width=550'
+ params += ', height=540'
+ params += ', top=100%, left=100%'
+ params += ', fullscreen=no';
+ params += ', scrollbars=yes';
+
+ newwin=window.open(url,'windowname5', params);
+ if (window.focus) {newwin.focus()}
+ return false;
+}
+// -->
+</script>
+<tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <tr >
+        <td>
+        <p> <font color="red"><strong>IMPORTANT NOTE</strong>:<br>
+  Please do not close the window after you start taking the test. <br>
+   In case you close the window, the current <%=session[:examName]%> will be terminated . <br/> 
+  Anyways you can start the exam when you login next time from the point where you skipped earlier.<br/>
+Any time during the test, if you want to end the test, you can click on "I've completed my test" button. </font></p>
+        <p><font color="red"><b>PLEASE DO NOT CLOSE THE WINDOW</b>.</font></p>
+        <div id="flow" align="center" style="display : none;">
+       </div>
+ 
+        <h2>Instructions for <%=session[:examName] %> Exam</h2>
+        
+       <ul class="contentul">
+       <li class="contentli">This test is of 180 minutes duration.</li>
+	   <li class="contentli">This JTO - BSNL Sample Test consists of 3 sections.</li>
+	    <li class="contentli">Section1 and Section2 consists 50 Questions each and Section3 contains 20 Questions</li>
+       <li class="contentli">After this page you will see the list of sections in the exam</li>
+       <li class="contentli">You can choose any of the sections in the exam to start with.</li>
+	   <li class="contentli">During the exam, you can switch between the sections as you wish.</li>
+	   <li class="contentli"> To navigate to the questions, you can choose question index to the left of your exam page<br/>(0r)<br/> use "Previous Question" and "Next Question" buttons to navigate to the previous and next questions respectively </li>
+	   <li class="contentli">After you complete the exam, click on "I have completed the exam" button, to take you to the results page</li>
+	   <li class="contentli">You cannot go back to the exam after you reach results page.</li>
+	  <li class="contentli">Click on the 'I Agree' button to start the test</li>
+       <li class="contentli"><font color="red">Note:- Please click the <a href="#" onclick="popup('/demoexam/show_indicators')" alt="JTO - BSNL  2009"><b>Show Instructions</b></a> link to show indicators</font></li>
+	   </ul>
+       	
+      
+     
+        <a href="/verifyexam/update_loggedin"><img src="/images/iagree.png" alt="I Agree" border="0"/></a>        </td>
+      </tr>
+    </table></td>
+  </tr>

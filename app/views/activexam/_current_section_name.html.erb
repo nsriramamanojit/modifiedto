@@ -1,0 +1,6 @@
+<div id="current_section">
+
+	<% @sections= Admin::Sectiontemplate.find_by_SectionTemplate_Id(@sectionTemplateId,:select=>'SectionTitle') %>
+<b><%= @sections.SectionTitle %></b>
+
+</div>

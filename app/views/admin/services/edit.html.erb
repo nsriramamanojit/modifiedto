@@ -1,0 +1,188 @@
+
+<div id="shellcontainer">
+	<div id="shellleft">
+		<script type="text/javascript">
+			function callforservicemode(val)
+			{
+				var valueinlowercase =val.toLowerCase();
+				var aa= valueinlowercase.indexOf("bitsat")
+				if (aa >= 0) {
+					document.getElementById('service_service_mode').value = 'OnLine';
+					document.getElementById('service_service_mode').disabled = 'true';
+				}
+				else {
+						document.getElementById('service_service_mode').disabled = false;
+				}
+			}
+			function disableamount1()
+			{
+				document.getElementById('amount').readOnly = false
+			}
+			function disableamount2()
+			{
+				document.getElementById('amount').value = '0'
+				document.getElementById('amount').readOnly = true
+			}
+			function SelectedItem()
+			{
+				status = document.getElementById('service_payment_required').checked
+				if(status == true)
+				{
+					if(document.getElementById('amount').value <= 0)
+					{alert('Please Enter the Amount ');
+					return false;}
+				}
+				
+			}
+			function call()
+			{
+				alert('hiiiiii');
+			}
+		</script>
+		<div align="right"><a href="/admin/services/index"><b>Back</b></a></div><br>
+    	<% form_for(:service, @service, :url => {:action=>'update',:id => @service},:html =>{:multipart => true,:onsubmit=>"return SelectedItem();"}) do |form| %>
+			<table class="main_form" cellspacing="0" cellpadding="3" border="0"  width="700">
+				<tr><td align="center" colspan="2"><h3><font color="green">Edit Service</font></h3></td></tr>
+				<tr>
+					<td colspan="2" align="center">
+						<font size="-1" color="#ff0000">Note:Fields marked with(*)are compulsory. </font>
+					</td>
+				</tr>
+				<tr><td align="right" valign="top" class="label"><strong>Service Name :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>					
+					<td>
+						<%= collection_select(:service, :service_name, @exams, :ExamName, :ExamName,{},:onchange=>'callforservicemode(this.value);') %>
+						<font color="red"><%= error_message_on @service,'service_name'%></font>
+						<script type="text/javascript">
+						var service_service_name = new LiveValidation('service_service_name',{onlyOnSubmit: true});
+						service_service_name.add(Validate.Presence, {failureMessage: "Select Service Name!"})
+		             </script>						
+					</td>
+				</tr>					
+				<tr><td align="right" valign="top" class="label"><strong>Service Type :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>	
+					<td>
+						<%= collection_select(:service, :servicetype_id, @servicetypes, :servicetype_id, :service_type) %>
+						<script type="text/javascript">
+						var service_servicetype_id = new LiveValidation('service_servicetype_id',{onlyOnSubmit: true});
+						service_servicetype_id.add(Validate.Presence, {failureMessage: "Select Service Type!"})
+		             </script>						
+					</td>
+				</tr>
+					
+				<tr><td align="right" valign="top" class="label"><strong>Service Mode :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+				<td>
+					<%nameinuppercase =  @service.service_name.upcase%>
+						<%aa = nameinuppercase.rindex('BITSAT')%>
+					    <%if aa!= nil%>
+					     <%if aa >=0 %>
+					       <%= select('service','service_mode',@service_mode,{},:disabled=>true) %>
+					     <% end %>
+					    <%else%>
+						<%= select('service','service_mode',@service_mode) %>
+						<% end %>
+						<script type="text/javascript">
+						var service_mode = new LiveValidation('service_service_mode',{onlyOnSubmit: true});
+						service_mode.add(Validate.Presence, {failureMessage: "Select Service Mode!"})
+		             </script>	
+					</td>
+					
+				</tr>	
+								
+				<tr><td align="right" valign="top" class="label"><strong>Service Description :</strong></td>					
+					<td><%= form.text_area :service_description ,:cols=>35 ,:rows=>2,:id=>'servicedes',:maxlength=>1000%>
+					
+						<script type="text/javascript">
+						var servicedes = new LiveValidation('servicedes');					
+						servicedes.add(  Validate.Length, { maximum: 1000 } )
+					</script>		
+					</td>
+				</tr>					
+				<tr><td align="right" valign="top" class="label"><strong>Payment Required :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>	
+					<td>
+						<% if @service.payment_required == true %>
+						<input type="radio" id="service_payment_required" name="service[payment_required]" value="1" checked="true" onclick="disableamount1()"/>Yes
+						<input type="radio" id="service_payment_required" name="service[payment_required]" value="0" onclick="disableamount2()"/>No
+						<%else%>
+						<input type="radio" id="service_payment_required" name="service[payment_required]" value="1"  onclick="disableamount1()"/>Yes
+						<input type="radio" id="service_payment_required" name="service[payment_required]" value="0" checked="true" onclick="disableamount2()"/>No
+						<%end%>
+						<font color="red"><%= error_message_on @service,'payment_required'%></font>
+						 
+					</td>					
+				</tr>					
+				<tr><td align="right" valign="top" class="label"><strong>ServiceCharge :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>	
+					<td>
+						<% if @service.payment_required == 1 %>
+					<%= form.text_field :servicechargeamount ,:size=>'45' ,:maxlength=>'10',:id=>'amount'%>
+					<font color="red"><%= error_message_on @service,'servicechargeamount'%></font>					
+								<script type="text/javascript">
+						var amount = new LiveValidation('amount',{onlyOnSubmit: true});
+						amount.add( Validate.Numericality);
+					</script>
+					<%else%>
+					<%= form.text_field :servicechargeamount ,:size=>'45' ,:maxlength=>'10',:id=>'amount' ,:readonly=>'true'%>
+					<%end%>
+					
+					</td>					
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Service Status :</strong></td>	
+					<td>
+						<% if @service.service_status == '1' %>
+						<input type="radio" id="service_status" name="service[service_status]" value="1" checked = "true"/>Active
+						<input type="radio" id="service_status" name="service[service_status]" value="0"  />InActive
+						<%else%>
+						<input type="radio" id="service_status" name="service[service_status]" value="1" />Active
+						<input type="radio" id="service_status" name="service[service_status]" value="0" checked = "true" />InActive
+						<%end%>
+						 
+					</td>					
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Service Enabled :</strong></td>	
+					<td>
+						<% if @service.service_enabled == true%>
+						<input type="radio" id="service_enabled" name="service[service_enabled]" value="1" checked = "true"/>True
+						<input type="radio" id="service_enabled" name="service[service_enabled]" value="0"  />False
+						<%else%>
+						<input type="radio" id="service_enabled" name="service[service_enabled]" value="1" />True
+						<input type="radio" id="service_enabled" name="service[service_enabled]" value="0" checked = "true" />False
+						<%end%>
+						 
+					</td>
+				</tr>
+				
+				<tr><td align="right" valign="top" class="label"><strong>Service StartDate :</strong></td>	
+					<td>
+					<%= form.date_select :service_register_begindate ,:size=>'45'%>
+											
+							 	
+					</td>
+				</tr>
+				<tr><td align="right" valign="top" class="label"><strong>Service EndDate :</strong></td>	
+					<td>
+					<%= form.date_select :service_register_lastdate ,:size=>'45'%>
+											
+							 	
+					</td>
+				</tr>
+								
+				<tr><td align="right" valign="top" class="label"><strong>Comments :</strong></td>	
+					<td><%= form.text_area :comments ,:rows=>2,:cols=>35,:maxlength=>'500',:id=>'comments' %>
+						
+								<script type="text/javascript">
+						var comments = new LiveValidation('comments');
+						comments.add(  Validate.Length, { maximum: 500 } )
+					</script>
+					</td>					
+				</tr>				
+				
+				<tr><td colspan="2" align="center"><%= submit_tag "Edit Service" %>
+					<input type="reset" value="Reset" name="Cancel"/>
+					</td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+			</table>
+			<% end %><!--end of form -->
+			</div>
+			<% admin_relavant_info @allservices do |s|%>
+			<a href="/admin/services/show/<%=s.id%>"><%=s.service_name%></a><br/>
+				<% end %>
+			</div>

@@ -1,0 +1,51 @@
+<div id="questions">
+<style type="text/css">
+.changeQuestionCss { 
+font-family:Lucida Sans Unicode,Verdana,Arial;
+background-color: #FE7979;
+padding: 4px;
+font-weight:bold;
+}
+.revflag{
+font-weight:bold;
+font-size: 18px;	
+}
+
+</style>	
+
+<table width="99%" border="0" align="center" cellpadding="1" cellspacing="0" bgcolor="#BD090D">
+<tr>
+                <td align="center" height="22"><span class="whitetext">Go to:</span></td>
+
+              </tr>
+           </table><br />
+
+<% @section_questions_with_default_answers=@Studentexams.SectionPaper.split(',')%>
+<% question_serial_number = 1 %>
+<% @section_questions_with_default_answers.each do |eachQuestion| %>
+<div class="indicators">
+ <% reviewflags=@Studentexams.CurrentMarkReviewFlags%>
+ <% rev=reviewflags[question_serial_number-1]%><!--CurrentReviewFlags at index of question_serial_number(subtractiong from 1 because index is starts from 0) -->
+<% if rev == 48%><!-- 48 is ASCII value of 0 -->
+<div id="revq<%= question_serial_number %>" class="revflag"></div>
+<% else %><!-- rev== 49. 49 is is ASCII value of 1 -->
+<div id="revq<%= question_serial_number %>" class="revflag">*</div>
+<% end %>
+<div id="cfq<%= question_serial_number %>" class="crtqnsflag"> </div>
+<div class="qnsnum">
+<input type = "hidden" value ="<%= eachQuestion[0..4] %>" id="numq<%= question_serial_number %>">
+<input type = "hidden" value ="<%= eachQuestion[6] - ?0 %>" id="ansq<%= question_serial_number %>">
+ <!-- character '0' is converted to value 0 by subtracting its ASCII value from ASCII 0 (48)  -->
+ 
+ <% if((eachQuestion[6] - ?0 )!=0) %>
+<a href="/demoqueoperations/question_by_code?qCode=<%= eachQuestion[0..4] %>&qId=<%= question_serial_number %>&secTId=<%= @sectionTemplateId %>" id = "q<%= question_serial_number %>" class="changeQuestionCss"  target="qFrame" onclick="qSelected('q<%= question_serial_number.to_s %>');"><%= 'Q' + question_serial_number.to_s%></a> 
+ <% else %>
+ <a href="/demoqueoperations/question_by_code?qCode=<%= eachQuestion[0..4] %>&qId=<%= question_serial_number %>&secTId=<%= @sectionTemplateId %>" id = "q<%= question_serial_number %>" class="leftnavigationli"  target="qFrame" onclick="qSelected('q<%= question_serial_number.to_s %>');"><%= 'Q' + question_serial_number.to_s%></a> 
+ <% end %>
+ 
+ <% question_serial_number = question_serial_number + 1 %>
+ </div><!-- End of qnsnum Div-->
+ </div><!-- End of Indicators Div-->
+<% end %>
+
+</div>

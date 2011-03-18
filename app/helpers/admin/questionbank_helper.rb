@@ -1,0 +1,2 @@
+module Admin::QuestionbankHelper
+end

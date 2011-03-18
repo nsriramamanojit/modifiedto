@@ -1,0 +1,89 @@
+<tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="3" cellspacing="0">
+      <tr >
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="20"><div align="center">
+                <h1><%=session[:examName]%> Question-wise Analysis</h1>
+            </div></td>
+          </tr>
+        </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td align="center" bgcolor="#FFFFCC">
+                <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFFFF">
+                  <tr>
+                    <td width="49%" height="250" colspan="3" align="center">
+
+<div id="sections">
+	<table><tr><td>Go To ->></td>
+	<% @solvedexamsection.each do |sections| %>
+	 <td>
+	 			<a href="/analysis/change_section?secTempId=<%=sections.SectionTemplate_Id%>"><%=sections.SectionTitle%></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>	
+	 
+	<% end %>
+	</tr></table>
+</div>
+<div align="right"><a href="/analysis"><b>Graphical Analysis</b></a></div>
+
+<div id="section_scores">
+	
+	<h3><%=@solvedexamsection[0].SectionTitle%></h3>
+	<div id="showquestion"></div>
+	<table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="border: 1px solid rgb(240, 247, 232); background-color: rgb(255, 255, 255);">
+		<tr bgcolor="#E9E9E9"><th>Q.No</th>
+	<!--<th>Topic</th> -->
+	<th>My Answer</th>
+	<th>Right Answer</th>
+	<th>Result</th>
+	<th>View Question</th>
+	</tr>
+	
+	<% questions=@solvedexamsection[0].SectionPaper.split(',')%>
+	<% qno= 1%>
+	<% questions.each do |ques|%>
+	<tr>
+		<td align="center">
+			<%=qno%>
+		</td>
+	
+		<td align="center">
+			<% if (ques[9] - ?0)==0 %>
+			<b>NA</b>
+			<% else%>
+			<%=ques[9] - ?0%>
+	      <% end %>
+		</td>
+		<td>
+			<%=ques[8] - ?0%>
+		</td>
+		<td align="center">
+			<% if ques[9]==ques[8]%>
+			<img src="/images/right.gif" alt="Right"/>
+			<% elsif (ques[9] - ?0)==0%>
+			<b>NA</b>
+			<% else ques[9]!=ques[8]%>
+			<img src="/images/wrong.gif" alt="Wrong"/>
+			<% end %>
+		</td>
+		<td align="center">
+	
+		<a href="#" onclick="popup('/analysis/question_review?qcode=<%=ques[0..4]%>&myanswer=<%=ques[9] - ?0%>')" alt="JTO - BSNL  2009">Show Question</a>
+		</td>
+		
+	</tr>
+	<% qno=qno+1%>
+	<% end %>
+	</table>
+</div>
+</td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+          </table>
+          </td>
+      </tr>
+    </table></td>
+  </tr>

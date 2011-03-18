@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/bsnljtoTelecom/!svn/ver/41/bsnlJtoTelecom/db/migrate
+END
+20090514065712_create_servicepayments.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20090514065712_create_servicepayments.rb
+END
+20081107042508_create_activexamsections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081107042508_create_activexamsections.rb
+END
+20090526063056_create_profiles.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/bsnljtoTelecom/!svn/ver/41/bsnlJtoTelecom/db/migrate/20090526063056_create_profiles.rb
+END
+20081004173317_create_admin_services.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081004173317_create_admin_services.rb
+END
+20080930123706_create_admin_examtypes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20080930123706_create_admin_examtypes.rb
+END
+20090501053502_create_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20090501053502_create_users.rb
+END
+20081006172246_create_admin_servicetypes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081006172246_create_admin_servicetypes.rb
+END
+20081002093348_create_admin_questionbanks.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081002093348_create_admin_questionbanks.rb
+END
+20080930070519_create_admin_subjects.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20080930070519_create_admin_subjects.rb
+END
+20081001100314_create_admin_exams.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081001100314_create_admin_exams.rb
+END
+20090513100735_create_demoexamsections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20090513100735_create_demoexamsections.rb
+END
+20090430063735_create_administrators.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20090430063735_create_administrators.rb
+END
+20090513081227_create_demousers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20090513081227_create_demousers.rb
+END
+20081004055919_create_admin_examschedules.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081004055919_create_admin_examschedules.rb
+END
+20090513101237_create_solvedexamsections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20090513101237_create_solvedexamsections.rb
+END
+20081007110240_create_admin_sectiontemplates.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081007110240_create_admin_sectiontemplates.rb
+END
+20081014064432_create_studentexams.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20081014064432_create_studentexams.rb
+END
+20080930131632_create_admin_examtemplates.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20080930131632_create_admin_examtemplates.rb
+END
+20090511090001_create_admin_sectiontopics.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/bsnljtoTelecom/!svn/ver/3/bsnlJtoTelecom/db/migrate/20090511090001_create_admin_sectiontopics.rb
+END

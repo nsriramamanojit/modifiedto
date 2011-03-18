@@ -1,0 +1,27 @@
+<br/><br/><div align="center">
+<h1>Editing administrator</h1>
+
+<% form_for(@administrator) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @administrator %> |
+<%= link_to 'Back', administrators_path %>
+</div>
+<br/>

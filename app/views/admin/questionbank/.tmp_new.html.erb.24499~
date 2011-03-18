@@ -1,0 +1,314 @@
+<!-- Author :Upender
+## Date and Time :02-10-2008 3:30 am
+-->
+
+<!-- script to show /hide div for textual and graphical -->
+
+<script type="text/javascript">
+
+  function textual (divToShow) {
+  
+if (document.getElementById) {
+if (divToShow.checked == true) {
+document.getElementById('textual').style.display = "inline";
+document.getElementById('graphical').style.display = "none";
+}
+}
+
+  }
+  function graphical (divToShow) {
+  
+  if (document.getElementById) {
+if (divToShow.checked == true) {
+document.getElementById('textual').style.display = "none";
+document.getElementById('graphical').style.display = "inline";
+}
+}
+}
+
+</script>
+
+<!--end script -->
+
+<script>
+function validate_required(field,alerttxt)
+{
+with (field)
+{
+if (value==null||value=="")
+  {alert(alerttxt);return false;}
+else {return true}
+}
+}
+  function Form1_Validator(theForm)
+{
+// require at least one radio button be selected
+var radioSelected = false;
+for (i = 0;  i < theForm.questionbank_question_media_type.length;  i++)
+{
+if (theForm.questionbank_question_media_type[i].checked)
+radioSelected = true;
+}
+if (!radioSelected)
+{
+alert("Please check one of the \"Question Format\" types.");
+return (false);
+}
+//null validation for textfields displayed
+with (theForm)
+{
+if(theForm.questionbank_question_media_type[0].checked){//for textual div textfields(validation for presence)
+	
+	if (validate_required(questionbank_question_text,"Question text can't be empty!")==false)
+  {questionbank_question_text.focus();return false;}
+if (validate_required(questionbank_option1_text,"option1 text can't be empty!")==false)
+  {questionbank_option1_text.focus();return false;}
+  if (validate_required(questionbank_option2_text,"option2 text can't be empty!")==false)
+  {questionbank_option2_text.focus();return false;}
+  if (validate_required(questionbank_option3_text,"option3 text can't be empty!")==false)
+  {questionbank_option3_text.focus();return false;}
+  if (validate_required(questionbank_option4_text,"option4 text can't be empty!")==false)
+  {questionbank_option4_text.focus();return false;}
+   }
+  
+  else{//for graphical div file fields(validation for presence)
+  if (validate_required(questionbank_question_imagepath,"Question image can't be empty!")==false)
+  {questionbank_question_imagepath.focus();return false;}
+  if (validate_required(questionbank_option1_imagepath,"option1 image can't be empty!")==false)
+  {questionbank_option1_imagepath.focus();return false;}
+  if (validate_required(questionbank_option2_imagepath,"option2 image can't be empty!")==false)
+  {questionbank_option2_imagepath.focus();return false;}
+  if (validate_required(questionbank_option3_imagepath,"option3 image can't be empty!")==false)
+  {questionbank_option3_imagepath.focus();return false;}
+  if (validate_required(questionbank_option4_imagepath,"option4 image can't be empty!")==false)
+  {questionbank_option4_imagepath.focus();return false;}
+}
+}
+
+}
+
+</script>
+
+<div id="shellcontainer">
+
+	<div id="shellleft">
+	
+		 <% form_for(:questionbank, @questionbank, :url => {:action=>'create'},:html =>{:multipart => true,:onsubmit=>"return Form1_Validator(this);"}) do |form| %>           
+		  
+		  <table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">
+				<tr><td align="center" colspan="2"><h3><font color="green">Add New Question</font></h3></td>	</tr>			
+				<tr>
+					<td colspan="2" align="center">
+						<font size="-1" color="#ff0000">Note:Fields marked with(*)are compulsory. </font>
+					</td>
+				</tr>	
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Question Format:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+					<td><input type="radio" id="questionbank_question_media_type" name="questionbank[question_media_type]" value="Textual" onClick="textual(this)"/>Textual
+    								<input type="radio" id="questionbank_question_media_type" name="questionbank[question_media_type]" value="Graphical"  onClick="graphical(this)"/>Graphical
+					</td>
+				</tr>				
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Select Subject:</strong><font face="Verdana" color="#e30102" size="-2">*</font>
+					</td>
+					<td><%= collection_select(:questionbank, :subject_id, @subjects,:id, :subject_name,{:prompt=>'Select Subject'}) %>
+					<script type="text/javascript">
+						var questionbank_subject_id = new LiveValidation('questionbank_subject_id',{onlyOnSubmit: true});
+						questionbank_subject_id.add(Validate.Presence, {failureMessage: "Select Subject!"})
+		             </script>					
+					</td>				
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>ExamType Tags:	</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>				
+						<%i = 1%>
+					<td><% @examtypes.each do |etype| %>					
+						<%= check_box('etype'+i.to_s, 'checked', {}, etype.examtype, '') %>
+						<%= etype.examtype%>
+						<%i=i+1%>
+						<% end %>
+						<font color="red"><%= error_message_on @questionbank,'examtype_tags'%></font>
+					</td>
+				</tr>				
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Internal Referece Number:</strong></td>
+				
+					<td><%= form.text_field :internal_ref_number,:size=>'45' ,:maxlength=>'25',:id => 'internalrefnum'%>
+					<script type="text/javascript">
+						var internalrefnum = new LiveValidation('internalrefnum',{onlyOnSubmit: true});
+						internalrefnum.add(Validate.Presence, {failureMessage: "Can't be empty!"})
+		             </script>
+						
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Topic:</strong></td>					
+					<td>					
+				<%= collection_select(:questionbank, :topic, @sectiontopics,:Topic, :Topic,{:prompt=>'Select Topic'}) %>
+					<script type="text/javascript">
+						var questionbank_topic = new LiveValidation('questionbank_topic',{onlyOnSubmit: true});
+						questionbank_topic.add(Validate.Presence, {failureMessage: "Select Topic!"})
+		             </script>	
+					
+					</td>			
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Section Tags:</strong></td>					
+					<td>					
+				<%= collection_select(:questionbank, :tags, @sectiontags,:SectionTags, :SectionTags,{:prompt=>'Select Tags'}) %>
+					<script type="text/javascript">
+						var questionbank_tags = new LiveValidation('questionbank_tags',{onlyOnSubmit: true});
+						questionbank_tags.add(Validate.Presence, {failureMessage: "Select Tags!"})
+		             </script>	
+					
+					</td>			
+				</tr>
+					
+							
+						
+		 </table>		
+<!-- textual format -->		
+	 <div id="textual" style="display : none; background: #ccc">
+		  <table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">
+		 	
+			<tr>
+				<td align="right" valign="top" class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<strong>Question Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.text_area :question_text,:rows=>2,:cols=>34 ,:maxlength=>'4000'%>
+				
+ 				</td>	
+			</tr>					
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option1 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.text_area :option1_text,:rows=>2,:cols=>34 ,:maxlength=>'1000'%>
+				
+ 				</td>	 
+			</tr>					
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option2 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>						
+				<td><%= form.text_area :option2_text,:rows=>2,:cols=>34 ,:maxlength=>'1000'%>
+				
+ 				</td>	
+			</tr>						
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option3 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>				
+				<td><%= form.text_area :option3_text,:rows=>2,:cols=>34 ,:maxlength=>'1000'%>
+				
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option4 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>		
+				<td><%= form.text_area :option4_text,:rows=>2,:cols=>34 ,:maxlength=>'1000'%>
+				
+				</td>					
+			</tr>			
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option5 Text:</strong></td>
+			<td><%= form.text_area :option5_text,:rows=>2,:cols=>34 ,:maxlength=>'1000'%>
+			
+			</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Solution Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.text_area :solution_text,:rows=>2,:cols=>34 ,:maxlength=>'1000'%>
+				
+				</td>
+			</tr>			
+			
+		</table>			
+	</div> <!-- end of textula format -->	
+ <!-- graphycal format -->					
+	 <div id="graphical" style="display : none; background: #eee">					
+		<table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">	
+			<tr>
+				<td align="right" valign="top" class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<strong>Question Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>				
+				<td><%= form.file_field :question_imagepath,:size=>'45' ,:maxlength=>'80'%></td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option1 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>				
+				<td><%= form.file_field :option1_imagepath,:size=>'45' ,:maxlength=>'80'%></td>	
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option2 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>				
+				<td><%= form.file_field :option2_imagepath,:size=>'45' ,:maxlength=>'80'%></td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option3 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.file_field :option3_imagepath,:size=>'45' ,:maxlength=>'80'%></td>	
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option4 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>				
+				<td><%= form.file_field :option4_imagepath,:size=>'45' ,:maxlength=>'80'%></td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option5 Image Path:</strong></td>		
+				<td><%= form.file_field :option5_imagepath,:size=>'45' ,:maxlength=>'80'%></td>
+			</tr>			
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Solution Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.file_field :solution_imagepath,:size=>'45' ,:maxlength=>'80'%></td>
+			</tr>		
+		 </table>
+	</div> <!-- end of graphical format -->			
+		<table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">
+			<tr>
+				<td align="right" valign="top" class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>Correct Answer:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>				
+					<td><%= form.text_field :correct_answer,:size=>'45' ,:maxlength=>'10',:id=>'correct_answer'%>
+					<script type="text/javascript">
+			               var correct_answer = new LiveValidation('correct_answer',{onlyOnSubmit: true});
+			               correct_answer.add( Validate.Presence);
+						    correct_answer.add( Validate.Numericality ,{ minimum: 1, maximum: 4 });
+						   correct_answer.add(  Validate.Length, { maximum: 1 } )
+						 </script> 
+					<font color="red"><%= error_message_on @questionbank,'correct_answer'%></font>
+					
+					</td>		
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Source:</strong></td>					
+					<td><%= form.text_field :source,:size=>'45' ,:maxlength=>'100'%>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Author:</strong></td>			
+					<td><%= form.text_field :author,:size=>'45' ,:maxlength=>'100'%>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Comments:</strong></td>					
+					<td><%= form.text_area :comments ,:rows=>2,:cols=>35,:maxlength=>'1000' %>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><%= submit_tag "Submit Question" %>
+					<input type="reset" value="Reset" name="Cancel"/>
+					</td>
+				</tr>
+				<tr><td height="15"/></tr>	
+			</table>		
+	 <% end %><!--end of form -->			
+	</div>	
+<!--Related Information -->
+			<% admin_relavant_info @questions do |que|%>
+			<table><tr><td><font color="#08457E" size="3">Last Question Inserted is ,</font></td></tr>
+			<tr><td><b>Quetion Code : </b><a href="/admin/questionbank/edit_question/<%=que.id%>" title="Edit this Question"><%=que.question_code%></a></td></tr>
+			<tr><td><b>Subject Name : </b><%=que.subject_name%></td></tr>
+			<tr><td><b>Question Number : <font color="#DE3163" size="3"><%=que.question_number%></font></b></td></tr>
+			<tr><td><b>Internal Reference Number : </b><%=que.internal_ref_number%></td></tr>
+			</table>
+		<% end %>		
+</div>			
+				
+		
+				
+			
+
+		  
+		   
+		   
+		  
+			
+			
+				

@@ -1,0 +1,27 @@
+
+<div id="shellcontainer">
+	<div id="shellleft">
+  <div align="right"><a href="/admin/examschedules/index"><b>Back</b></a></div><br>
+<table  class="main_form" cellspacing="0" cellpadding="4" border="0"  width="700">
+	<tr><td align="center" colspan="4"><h3><font color="green">Add New Exam Schedule</font></h3></td></tr>
+	<tr>
+		
+		<td align="right" valign="top" class="label"><strong>Exam Name :</strong></td>
+	
+		<td>
+			 <%= collection_select(:examschedule,:Exam_Id,@exams,:Exam_Id,:ExamName, {:prompt   => "Select Exam Name"}, {:onchange => "#{remote_function(:url  => {:action => "update_schedules"},:with => "'Exam_Id='+value")}"}) %>
+		</td>
+	</tr>
+	<tr><td colspan="2">&nbsp;</td></tr>
+	</table>
+	<div id="newschedule"></div>
+	<tr><td colspan="2">&nbsp;</td></tr>
+ </div>
+			<!--Related Information -->
+			<% admin_relavant_info @examnames do |exam|%>
+			<% @examname = Admin::Exam.find(exam.Exam_Id)%>
+			<a href="/admin/examschedules/show?examid=<%=exam.Exam_Id%>"><%=@examname.ExamName%></a><br/>
+				<% end %>
+</div>			
+
+	

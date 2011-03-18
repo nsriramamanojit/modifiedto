@@ -1,0 +1,70 @@
+
+<tr>
+<td bgcolor="#FFEAEA">
+	<!--Current Time: <b><%= Time.now.strftime("%H:%M:%S") %></b> -->
+</td>
+</tr>
+</tr>
+</table>
+</div>
+<!-- END OF HEADER DIV --><!-- DIV BODYSHELL Container for Left Navigation and Body Content -->
+<script type="text/javascript">
+    function GetSelectedItem(myform){
+        chosen = ""
+        len = myform.SectionTemplateId.length
+        for (i = 0; i < len; i++) {
+            if (myform.SectionTemplateId[i].checked) {
+                chosen = myform.SectionTemplateId[i].value
+            }
+        }
+        if (chosen == "") {
+            alert("Please select any one of the sections above ");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>
+
+            <div id="questions">
+            	
+                				<center><h1><%=session[:examName]%></h1></center><br/>
+	
+                            <table width="700" align="center"cellspacing="0" cellpadding="6" style="border:solid 1px #396FAF" border="0">
+                                <tr>
+                                    <td>
+                                        The exam sections are as given below. Select the section you want to attempt first
+                                    </td>
+                                </tr>
+                               
+								<form action="/activexam/index" name="myform" onsubmit="return GetSelectedItem(this);">
+                                <% @SectiontempAll.each do |sections| %>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name='SectionTemplateId' id='SectionTemplateId' value='<%=sections.SectionTemplate_Id%>'/><%=sections.SectionTitle %>
+                                    </td>
+                                </tr><%end %>
+                                
+                                <tr>
+                                    <td>
+                                        Once you click the 
+                                        <font color="red">
+                                            'Start Online Test' 
+                                        </font>
+                                        button below, a timer will start and you will get 
+                                        <br/>
+                                        exactly 180 minutes for this test. The time left will be displayed on the top of the screen
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                              </br>
+                                        <%= image_submit_tag "/images/startexam.png" ,:border=>0 %> <br><br>
+                                    </td>
+                                </tr>
+                              </form>
+                            </table>
+                       
+            </div>
+            <!-- END OF BODYSHELL DIV -->

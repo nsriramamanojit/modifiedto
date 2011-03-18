@@ -1,0 +1,21 @@
+[03/07/11 13:20:39 India Standard Time toshiba-1f9a016 (1216)] INFO : Web container: webrick
+[03/07/11 13:20:40 India Standard Time toshiba-1f9a016 (1216)] INFO : Transaction tracing threshold is 2.0 seconds.
+[03/07/11 13:20:40 India Standard Time toshiba-1f9a016 (1216)] INFO : New Relic RPM Agent 2.9.4 Initialized: pid = 1216
+[03/07/11 13:20:40 India Standard Time toshiba-1f9a016 (1216)] INFO : Agent Log found in C:/bsnlJtoTelecom/log/newrelic_agent.log
+[03/07/11 13:20:40 India Standard Time toshiba-1f9a016 (1216)] ERROR : Cannot add memory sampling: Unsupported platform for getting memory: i386-mingw32
+[03/07/11 13:20:56 India Standard Time toshiba-1f9a016 (1216)] INFO : Resolved collector.newrelic.com to 204.93.223.153
+[03/07/11 13:20:57 India Standard Time toshiba-1f9a016 (1216)] ERROR : RPM forced this agent to disconnect (The account 'upender' has been disabled due to inactivity. Have the account administrator login to rpm.newrelic.com to re-activate.)
+Restart this process to resume monitoring via rpm.newrelic.com.
+[03/07/11 13:21:52 India Standard Time toshiba-1f9a016 (1604)] INFO : Web container: webrick
+[03/07/11 13:21:52 India Standard Time toshiba-1f9a016 (1604)] INFO : Transaction tracing threshold is 2.0 seconds.
+[03/07/11 13:21:52 India Standard Time toshiba-1f9a016 (1604)] INFO : New Relic RPM Agent 2.9.4 Initialized: pid = 1604
+[03/07/11 13:21:52 India Standard Time toshiba-1f9a016 (1604)] INFO : Agent Log found in C:/bsnlJtoTelecom/log/newrelic_agent.log
+[03/07/11 13:21:53 India Standard Time toshiba-1f9a016 (1604)] ERROR : Cannot add memory sampling: Unsupported platform for getting memory: i386-mingw32
+[03/07/11 13:27:36 India Standard Time toshiba-1f9a016 (3860)] INFO : Web container: webrick
+[03/07/11 13:27:36 India Standard Time toshiba-1f9a016 (3860)] INFO : Transaction tracing threshold is 2.0 seconds.
+[03/07/11 13:27:36 India Standard Time toshiba-1f9a016 (3860)] INFO : New Relic RPM Agent 2.9.4 Initialized: pid = 3860
+[03/07/11 13:27:36 India Standard Time toshiba-1f9a016 (3860)] INFO : Agent Log found in C:/bsnlJtoTelecom/log/newrelic_agent.log
+[03/07/11 13:27:36 India Standard Time toshiba-1f9a016 (3860)] ERROR : Cannot add memory sampling: Unsupported platform for getting memory: i386-mingw32
+[03/07/11 13:27:51 India Standard Time toshiba-1f9a016 (3860)] INFO : Resolved collector.newrelic.com to 204.93.223.153
+[03/07/11 13:27:52 India Standard Time toshiba-1f9a016 (3860)] ERROR : RPM forced this agent to disconnect (The account 'upender' has been disabled due to inactivity. Have the account administrator login to rpm.newrelic.com to re-activate.)
+Restart this process to resume monitoring via rpm.newrelic.com.

@@ -1,0 +1,29 @@
+<div align="center">
+    <a href="#" onClick="Element.toggle('flow');"><b>Show Options</b></a>
+</div>
+  <div id="flow" align="center" style="display : none;">
+        
+    </div>
+	
+    
+        <h2>Hi <font color="#900404"><%=current_user.login%></font>!!!</h2>
+        
+       <b> You have choosen to start a sample exam. </b>  
+	         <ul class="contentul">
+       <li class="contentli">LSSSA found an uncompleted exam which you launched in your earlier login session</li>
+       <li class="contentli">Click here to proceed to exam. (Start Button)</li>
+       <li class="contentli">Once you click the<font color="red"> 'Continue' </font> button below, Sections are displayed.
+                                        <br/>
+                                       and  Choose the Section and start your exam </li>
+		<li class="contentli"><font color="red">Note:-Please click the <a href="#" onClick="Element.toggle('flow');"><b>Show Options</b></a> link to show indicators</font></li>							   
+       </ul>
+       
+        
+	   
+	  
+	  <input id="oldexamname" name="oldexamname" type="hidden" value="<%=session[:examName]%>" /></td>
+        <td align="left" class="content">        	        <b>Click the button to go to the test   &nbsp;&nbsp;</b>
+		<a href="/activexam/sections?examname=<%=session[:examName] %>"><img src="/images/continue_btn.png" alt="Continue"  border="0" /> </a>
+      
+		
+        

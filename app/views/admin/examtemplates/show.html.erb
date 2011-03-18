@@ -1,0 +1,45 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="right"><a href="/admin/examtemplates/edit/<%= @examtemplate.id %>"><b>Edit this Template</b></a>|<a href="/admin/examtemplates/index"><b>Back</b></a></div><br>
+		<table class="main_form"  cellspacing="0" cellpadding="4" border="0"  width="700">
+				<tr><td colspan="2" align="center"><h3><font color="#993300">Exam Template Details</font></h3></td></tr>				
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Exam Type Name :</font></strong></td>				
+					<td><%= Admin::Examtype.find(@examtemplate.ExamType_Id).examtype %></td>
+				</tr>			
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Template Name :</font></strong></td>						
+					<td><%= @examtemplate.TemplateName %></td>
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Total Duration Minutes :</font></strong></td>					
+					<td><%= @examtemplate.TotalDurationMinutes %></td>
+			    </tr>							
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Nunber of Sections :</font></strong></td>						
+					<td><%= @examtemplate.NumberOfSections %></td>
+			    </tr>							
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Template  Heading :</font></strong></td>					
+					<td><%= @examtemplate.TemplateHeading %></td>
+			    </tr>								
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Tamplate Instructions :</font></strong></td>					
+					<td><textarea  rows="3" cols="35" readonly="true" ><%= @examtemplate.TemplateInstructions %></textarea></td>
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Template Description :</font></strong></td>				
+					<td><textarea  rows="3" cols="35" readonly="true" ><%= @examtemplate.TemplateDescription %></textarea></td>
+			    </tr>							
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Comments :</font></strong></td>				
+					<td> <textarea  rows="3" cols="35" readonly="true" ><%= @examtemplate.Comments %></textarea></td>			
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Created on :</font></strong></td>							
+					<td><%=h @examtemplate.created_at.strftime("%d/%m/%Y at %I:%M%p") %></td>	
+			    </tr>
+				<tr><td align="right" valign="top" class="label"><strong><font color="#993300">Updated on :</font></strong></td>							
+					<td><%=h @examtemplate.updated_at.strftime("%d/%m/%Y at %I:%M%p") %></td>	
+			    </tr>
+				<tr><td colspan="2">&nbsp;</td></tr>			
+		</table><br/>
+ </div>
+			<!--Related Information -->
+			<% admin_relavant_info @examtemplates do |exam|%>
+			<a href="/admin/examtemplates/show/<%=exam.id%>"><%=exam.TemplateName%></a><br/>
+				<% end %>
+</div>			
+
+	

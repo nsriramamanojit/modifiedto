@@ -1,0 +1,10 @@
+
+<% if @free_services.blank?%>
+"No Free Services are avialable"
+<% else %>
+<% @free_services.each do |service| %>
+<h3><%=service.service_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--<a href="#" onclick="window.open('/verifyexam/password_required?examname=<%=service.service_name%>','examwindow','width=1000,height=650,menubar=no,location=0,toolbar=no,status=no,scrollbars=yes,resizable=yes')">Write an Exam</a>-->
+<a href="/verifyexam/password_required?examname=<%=service.service_name%>">Write an Exam</a>
+ </h3> <% end %>
+  <% end %>

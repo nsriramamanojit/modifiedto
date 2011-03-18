@@ -1,0 +1,27 @@
+<br/><br/><div align="center">
+<h1>Listing administrators</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Login</th>
+    <th>Password</th>
+  </tr>
+
+<% for administrator in @administrators %>
+  <tr>
+    <td><%=h administrator.name %></td>
+    <td><%=h administrator.login %></td>
+    <td><%=h administrator.password %></td>
+    <td><%= link_to 'Show', administrator %></td>
+    <td><%= link_to 'Edit', edit_administrator_path(administrator) %></td>
+    <td><%= link_to 'Destroy', administrator, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New administrator', new_administrator_path %>
+</div>
+<br/>

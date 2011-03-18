@@ -1,0 +1,54 @@
+<div id="totalscores_div">
+	<table width="70%" align="center">
+		<tr><td></td></tr>
+				<tr> <td class="name"><h3><font color="#396FAF">Dear </font><font color="#BB0066">Guest </font></h3></td></tr>
+        <tr>
+            <td>
+                <h2><font color="#396FAF">Congratulations !! You have successfully completed the <%=session[:examName]%></font></h2>
+            </td>
+			
+        </tr><td align="center" height="20"></td>
+		<tr><td><h3><font color="#396FAF">The following are section wise scores:</font></h3></td></tr>
+		
+		<tr></tr>
+	 </table>
+	 <% if @studentexamscores.blank? %>
+	 <p><!--Record Not Available --></p>
+	 <% else %>
+<table  width="850" cellpadding="2" align="center" >
+                <tr><td align="center" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Section Name</td>
+                    <td align="center"  style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Number Of Questions in Section</td>             
+					<td align="center"  style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Number Of Questions Attempted</td>
+					<td align="center"  style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Correct Answers</td>
+              <td align="center"  style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">InCorrect Answers</td>
+			   <td align="center"  style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Total Section Score</td>
+			    </tr>
+				<% @totalscore = 0%>
+				<% @studentexamscores.each do |score| %>
+				<tr>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><b><%= score.SectionTitle %></b></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%= score.NumQuestionsInSection %></td>					
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%= score.NumQuestionsAttempted %></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%= score.NumAnswersCorrect %></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%= score.NumAnswersIncorrect %></td>
+				<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><b><%= score.StudentSectionScore %></b></td>
+				</tr>
+				
+				<% @totalscore += score.StudentSectionScore%>
+				
+				<% end %>
+				<tr>
+					<td colspan="5" align="right" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><b>Total Score</b></td>
+				<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><b><font color="red"><%=@totalscore%></font></b></td>
+				</tr>
+				<tr><td><h3><font color="#396FAF">Please write to <a href="info@bsnljto.com">info@bsnljto.com</a> for any queries and suggestions.</font></h3></td></tr>
+	</table>
+
+	<% end %>
+	<br/>
+
+<br/>
+<br/>
+</div>
+<div><h2><a href="/demoanalysis/questionwise">Get Question wise Analysis</a>&nbsp:
+<a href="/demoanalysis/view">Graphical Analysis</a></h2></div>

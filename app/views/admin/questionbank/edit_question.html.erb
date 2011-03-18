@@ -1,0 +1,229 @@
+<!-- Author :Upender
+## Date and Time :04-10-2008 2:30 am
+-->
+
+<div id="shellcontainer">
+	<div id="shellleft">
+		 <% form_for(:questionbank, @questionbank, :url => {:action=>'update_question',:id =>@questionbank},:html =>{:multipart => true}) do |form| %>
+		<table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">
+		   	<tr><td align="center" colspan="2"><h3><font color="green">Edit Question</font></h3></td>	</tr>			
+				<tr>
+					<td colspan="2" align="center">
+						<font size="-1" color="#ff0000">Note:Fields marked with(*)are compulsory. </font>
+					</td>
+				</tr>	
+			
+			<tr>
+				<td align="right" valign="top" class="label"><strong>ExamType Tags:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>					
+					<%i = 1%>
+					<td><% @examtypes.each do |etype| %>
+						<%j=1%>
+						<%@questionbank.examtype_tags.split(/,/).each do |a|%>
+							<%j+=1 if a.eql?(etype.examtype)%>
+						<% end %>	
+						<% if j==1 %>
+							<%= check_box('etype'+i.to_s, 'checked', {}, etype.examtype, '') %>
+						<% else %>
+							<%= check_box('etype'+i.to_s, 'checked', {:checked=>true}, etype.examtype, '') %>
+						<% end %>
+						
+						<%= etype.examtype%>	
+						<%i=i+1%>
+						<% end %>
+						<font color="red"><%= error_message_on @questionbank,'examtype_tags'%></font>
+					</td>		
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Internal Referece Number:</strong></td>				
+					<td><%= form.text_field :internal_ref_number,:size=>'45' ,:maxlength=>'25',:id=>'internalrefnum'%>
+					<script type="text/javascript">
+						var internalrefnum = new LiveValidation('internalrefnum',{onlyOnSubmit: true});
+						internalrefnum.add(Validate.Presence, {failureMessage: "Can't be empty!"})
+		             </script>
+					
+								</td>
+				</tr>	
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Topic:</strong></td>				
+					<td><%= collection_select(:questionbank, :topic, @sectiontopics,:Topic, :Topic,{:prompt=>'Select Topic'}) %>
+					<script type="text/javascript">
+						var questionbank_topic = new LiveValidation('questionbank_topic',{onlyOnSubmit: true});
+						questionbank_topic.add(Validate.Presence, {failureMessage: "Select Topic!"})
+		             </script>	
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Section Tags:</strong></td>					
+					<td>					
+				<%= collection_select(:questionbank, :tags,@sectiontags,:SectionTags,:SectionTags,{:prompt=>'Select Tags'}) %>
+					<script type="text/javascript">
+						var questionbank_tags = new LiveValidation('questionbank_tags',{onlyOnSubmit: true});
+						questionbank_tags.add(Validate.Presence, {failureMessage: "Select Tags!"})
+		             </script>		
+					
+					</td>			
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Sub Topic:</strong></td>
+					<td><%= form.text_field :sub_topic,:size=>'45' ,:maxlength=>'45'%>
+					</td>
+				</tr>
+				
+						
+				
+		 </table>		
+		<!-- if question_media_type =textual -->
+		 <% if @questionbank.question_media_type==0%>
+		<table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">	
+			<tr>
+				<td align="right" valign="top" class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>Question Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.text_area :question_text,:rows=>3,:cols=>34 ,:maxlength=>'4000',:id=>'question_text'%>
+											
+								</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option1 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+				<td><%= form.text_area :option1_text,:rows=>2,:cols=>34 ,:maxlength=>'1000',:id=>'option1_text'%>
+											
+								</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option2 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+				<td><%= form.text_area :option2_text,:rows=>2,:cols=>34 ,:maxlength=>'1000',:id=>'option2_text'%>
+											
+								</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option3 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.text_area :option3_text,:rows=>2,:cols=>34 ,:maxlength=>'1000',:id=>'option3_text'%>
+											
+								</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option4 Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.text_area :option4_text,:rows=>2,:cols=>34 ,:maxlength=>'1000',:id=>'option4_text'%>
+											
+								</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option5 Text:</strong></td>
+				<td><%= form.text_area :option5_text,:rows=>2,:cols=>34 ,:maxlength=>'1000'%>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Solution Text:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+				<td><%= form.text_area :solution_text,:rows=>2,:cols=>34 ,:maxlength=>'1000',:id=>'solution_text'%>
+											
+								</td>
+			</tr>			
+			
+		</table>		
+		 <% else%><!-- if question is Graphical -->
+		 <table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">
+		 	
+			<tr>
+				<td align="right" valign="top" class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>Question Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+				<td><%= form.file_field :question_imagepath,:size=>'45' ,:maxlength=>'80'%>
+				<%= form.hidden_field(:old_question_imagepath,:value =>@questionbank.question_imagepath)%>
+			<%if @questionbank.question_imagepath!='' %><a style="text-decoration:none;" href="/<%=@questionbank.question_imagepath%>" target="blank">Show image</a><% end %>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option1 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.file_field :option1_imagepath,:size=>'45' ,:maxlength=>'80'%>
+				<%= form.hidden_field(:old_option1_imagepath,:value =>@questionbank.option1_imagepath)%>
+				<%if @questionbank.option1_imagepath!='' %><a style="text-decoration:none;" href="/<%=@questionbank.option1_imagepath%>" target="blank">Show image</a><% end %>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option2 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+				<td><%= form.file_field :option2_imagepath,:size=>'45' ,:maxlength=>'80'%>
+				<%= form.hidden_field(:old_option2_imagepath,:value =>@questionbank.option2_imagepath)%>
+				<%if @questionbank.option2_imagepath!='' %><a href="/<%=@questionbank.option2_imagepath%>" class="navlnk"  target="blank">Show image</a><% end %>
+				</td>
+			</tr>
+		   <tr>
+		   	<td align="right" valign="top" class="label"><strong>Option3 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>		
+				<td><%= form.file_field :option3_imagepath,:size=>'45' ,:maxlength=>'80'%>
+				<%= form.hidden_field(:old_option3_imagepath,:value =>@questionbank.option3_imagepath)%>
+				<%if @questionbank.option3_imagepath!='' %><a style="text-decoration:none;" href="/<%=@questionbank.option3_imagepath%>" target="blank">Show image</a><% end %>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option4 Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>			
+				<td><%= form.file_field :option4_imagepath,:size=>'45' ,:maxlength=>'80'%>
+				<%= form.hidden_field(:old_option4_imagepath,:value =>@questionbank.option4_imagepath)%>
+				<%if @questionbank.option4_imagepath!='' %><a style="text-decoration:none;" href="/<%=@questionbank.option4_imagepath%>" target="blank">Show image</a><% end %>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Option5 Image Path:</strong></td>
+				<td><%= form.file_field :option5_imagepath,:size=>'45' ,:maxlength=>'80'%>
+				<%= form.hidden_field(:old_option5_imagepath,:value =>@questionbank.option5_imagepath)%>
+				<%if @questionbank.option5_imagepath!='' %><a style="text-decoration:none;" href="/<%=@questionbank.option5_imagepath%>" target="blank">Show image</a><% end %>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top" class="label"><strong>Solution Image Path:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+				<td><%= form.file_field :solution_imagepath,:size=>'45' ,:maxlength=>'80'%>
+				<%= form.hidden_field(:old_solution_imagepath,:value =>@questionbank.solution_imagepath)%>
+				<%if @questionbank.solution_imagepath!='' %><a style="text-decoration:none;" href="/<%=@questionbank.solution_imagepath%>" target="blank">Show image</a><% end %>
+				</td>
+			</tr>			
+			
+		 </table>
+		 <% end %>
+		 <table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">
+		 	
+			<tr>
+					<td align="right" valign="top" class="label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<strong>Correct Answer:</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+					<td><%= form.text_field :correct_answer,:size=>'45' ,:maxlength=>'10',:id=>'correct_answer'%>
+					
+							<script type="text/javascript">
+			               var correct_answer = new LiveValidation('correct_answer',{onlyOnSubmit: true});
+			               correct_answer.add( Validate.Presence);
+						    correct_answer.add( Validate.Numericality ,{ minimum: 1, maximum: 4 });
+						   correct_answer.add(  Validate.Length, { maximum: 1 } )
+						 </script> </td>	
+				</tr>
+				<tr>
+						<td align="right" valign="top" class="label"><strong>Source:</strong></td>
+					<td><%= form.text_field :source,:size=>'45' ,:maxlength=>'100'%>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Author:</strong></td>		
+					<td><%= form.text_field :author,:size=>'45' ,:maxlength=>'100'%>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Comments:</strong></td>
+					<td><%= form.text_area :comments ,:rows=>2,:cols=>34,:maxlength=>'1000' %>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><%= submit_tag "Edit Question" %>
+					<input type="reset" value="Reset" name="Cancel"/>
+					</td>
+				</tr>
+				<tr><td height="15"/></tr>	
+			</table>		
+		 
+		 <% end %><!-- end of form -->
+	</div>
+	<!--Related Information -->
+			<% admin_relavant_info @questions do |que|%>
+			<table><tr><td><font color="#08457E" size="3">Last Question Inserted is ,</font></td></tr>
+			<tr><td><b>Quetion Code : </b><a href="/admin/questionbank/edit_question/<%=que.id%>" title="Edit this Question"><%=que.question_code%></a></td></tr>
+			<tr><td><b>Subject Name : </b><%=que.subject_name%></td></tr>
+			<tr><td><b>Question Number : <font color="#DE3163" size="3"><%=que.question_number%></font></b></td></tr>
+			<tr><td><b>Internal Reference Number : </b><%=que.internal_ref_number%></td></tr>
+			
+			</table>
+				<% end %>
+</div>		 

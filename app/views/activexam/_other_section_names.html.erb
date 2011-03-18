@@ -1,0 +1,29 @@
+<style type="text/css">
+	#spinner {
+		
+  position:absolute;
+  top: 200px;
+  left: 400px;
+  right: 300px;
+} 
+</style>
+
+<div id="other_section" style="background-color: #FFECEC">
+                   <table>
+                   	<tr>
+				   <%@SectiontempAll.each do |otherSections| %>
+				    <td width="25%" height="25" bgcolor="#FFECEC" style="border-right: 1px dashed; padding-right: 10px; padding-left: 5px">
+                        <div align="center">
+                  <b><%= link_to_remote(otherSections.SectionTitle,
+                     :url => {:action => 'get_question_left_navigation',:currentSectId=>otherSections.SectionTemplate_Id},
+                     :before => "Element.show('spinner')",
+                       :success => "Element.hide('spinner')")%></b>
+					</div>
+					 <img src="/images/ajaxloadericon.gif"  border ="0" id ="spinner" style ="display: none;"  />
+					 </td>
+					 			
+				<% end %>
+					</tr>
+                 </table>
+                
+</div>		

@@ -1,0 +1,40 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+<h3><%=@subject.subject_name %> Questions </h3>
+<%if @questionbanks.blank? %>
+                <p>
+                    Currently No Questions in <%=@subject.subject_name %>
+                </p>
+                <% else %>
+				
+<table class="main_form" height="54" cellspacing="0" cellpadding="5" border="1" align="center" width="700">
+	<tr>
+                    <th>Question Code</th>
+                    <th>Question Number</th>
+					<th>Question Type</th>
+					<th>Question Text or Image</th>
+					<th>Edit</th>
+	</tr>
+<%@questionbanks.each do |que|%>
+	<tr>
+		<td><%=que.question_code%></td>
+		<td><%=que.question_number%></td>
+		<%if que.question_media_type==0%>
+		<td>Textual</td>
+		<td><%=que.question_text%></td>
+		<% else%>
+		<td>Graphical</td>
+		<td>	<a style="text-decoration:none;" href="/<%=que.question_imagepath%>" target="blank">Show image</a></td>
+		<% end %>
+		<td><a href="/admin/questionbank/edit_question/<%=que.id%>">edit</a></td>
+	</tr>
+<% end %><!--end of iteration -->
+</table>	<br/>
+<% end %><!--end of if else (empty) -->
+</div>
+<!--Related Information -->
+			<% admin_relavant_info @questionbanks do |que|%>
+			<a href="/admin/questionbank/show/<%=que.id%>"><%=que.question_code%></a><br/>
+				<% end %>
+			
+</div>		

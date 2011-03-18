@@ -1,0 +1,32 @@
+<style type="text/css">
+.abc {
+padding-left:15px;
+padding-right:0px;
+padding-top: 10px;
+padding-bottom: 0px;
+min-height: 350px;	
+}
+</style>
+<br/>
+<div class="abc">
+<%=form_tag({}, {:id => "search"}) %>  
+<table align="center">
+	<tr><td><b>Enter Question Number:</b>
+		<%= text_field_tag("query", params[:query], :autocomplete => "off" ,:size=>'45') %>
+		<!--<%= image_tag("/images/spinner.gif",:align => "absmiddle",:border => 0,:id => "spinner",:style =>"display: none;" ) %>-->
+<img src="/images/spinner.gif" align ="absmiddle" border ="0" id ="spinner" style ="display: none;"  />
+		</td>
+	</tr>
+</table>
+<%= form_tag %>
+<%= observe_field 'query',  :frequency => 2,
+								:update => "search_results",
+                                :before => "Element.show('spinner')",
+                                :success => "Element.hide('spinner')",									
+								:url => {:controller => "questionbank", :action => "search_by_que_num"},
+								:with => "query" %>
+
+<div id="search_results">
+
+</div>
+</div>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LSSSA - Six Sigma </title>
+<link rel="shortcut icon" href="/favicon.ico">
+<%= stylesheet_link_tag 'styles'%>
+ <%= javascript_include_tag 'swfobject'%>
+ <script type="text/javascript">
+<!--
+function popup(url)
+{
+ params  = 'width=550'
+ params += ', height=500'
+ params += ', top=100%, left=100%'
+ params += ', fullscreen=no';
+ params += ', scrollbars=yes';
+
+ newwin=window.open(url,'windowname4', params);
+ if (window.focus) {newwin.focus()}
+ return false;
+}
+// -->
+</script>
+</head>
+
+
+<body>
+<table width="737" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="1" cellpadding="1">
+      <tr>
+      	
+        <td width="207" rowspan="2"><a href="/home"><img src="/images/logo.png" alt="JTO - BSNL |  bsnl jto sample test series" width="207" height="75" border="0" /></a></td>
+        <% if user_logged_in? %>
+             <div align="right" style="padding-right:15px; background-image: url(/images/loginname_bg.png); background-repeat: repeat-y; background-position: right; color: #000;"><i>you are logged in as: </i><b><%= current_user.login %></b></div>
+		 <td align="right"><a href="/home">Home</a> &nbsp; <strong>|</strong> &nbsp; <a href="/demoexam">Demo Test</a>  &nbsp; <strong>|</strong> &nbsp;  <a href="/home/profile">Profile</a>   &nbsp; <strong>|</strong> &nbsp;   <a href="/logout">Logout</a>   &nbsp; <strong>|</strong> &nbsp;  |</strong> &nbsp;   <a href="/home/contact">Contact</a>&nbsp;&nbsp;</td>
+      </tr>
+	  <% if !Servicepayment.exists?(:student_id=>current_user.id)%>
+	  <tr>
+      </tr>
+	  <% else %>
+	  <tr>
+        <td align="center"><a href="/home/userhome"><b>My Tests</b></a></td>
+      </tr>
+	  <% end %>
+	   <% else %>
+         <td align="right"><a href="/home">Home</a> &nbsp; <strong>|</strong> &nbsp;<a href="/demoexam">Demo Test</a>  &nbsp; <strong>|</strong> &nbsp;  <a href="/signup">Register</a>   &nbsp; <strong>|</strong> &nbsp;   <a href="/login">Login</a>   &nbsp; <strong>|</strong> &nbsp;   <a href="/home/testinfo">JTO - BSNL Test Information</a>   &nbsp; <strong>|</strong> &nbsp;   <a href="/home/contact">Contact</a>&nbsp;&nbsp;</td>
+         
+		  </tr>
+		  <tr>
+      </tr>
+		 <% end %>
+     
+	
+     
+    </table></td>
+  </tr>
+  <%= yield %>
+  
+  <tr>
+    <td background="/images/foot_bg.png" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="3" cellspacing="0">
+      <tr>
+        <td height="30">Copyright © 2011. All rights reserved. </td>
+      </tr>
+    </table></td>
+  </tr>
+ 
+</table>
+</body>
+</html>

@@ -1,0 +1,34 @@
+   <tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <tr >
+        <td>
+        
+        <a href="#" onClick="Element.toggle('flow');"></a>
+
+        <p> <font color="red"><strong>IMPORTANT NOTE</strong>:<br>
+  Please do not close the window after you start taking the test. <br>
+  In case you close the window, the current <%=session[:examName]%> will be terminated . <br/> 
+  Anyways you can start the exam when you login next time from the point where you skipped earlier.<br/>
+Any time during the test, if you want to end the test, you can click on "I've completed my test" button. </font></p>
+     <!--   <p><font color="red"><b>PLEASE DO NOT CLOSE THE WINDOW</b>.</font></p> -->
+      
+        <h2>Dear <font color="#900404"><%=current_user.login%></h2>
+		 <b> You have choosen to start a <%=session[:examName]%> </b>
+        
+       <ul class="contentul">
+       <li class="contentli">bsnljto.com found an incomplete <%=session[:examName]%> which you had launched in a previous login session</li>
+	   <li class="contentli">Click here to continue writing the exam. (Start Button)</li>
+       <li class="contentli"><font color="red">Note:- Please click here to <a href="#" onclick="popup('/demoexam/show_indicators')" alt="JTO - BSNL  2009"><b>show indicators</b></a></font></li>
+	    <li class="contentli">Once you click the<font color="red"> 'Continue' </font> button below, Sections are displayed.
+                                        <br/>
+                                       and  Choose any Section to start your exam </li>
+	   </ul>
+       	 <input id="oldexamname" name="oldexamname" type="hidden" value="<%=session[:examName]%>" />
+      
+     <b>Click the button to go to the test   &nbsp;&nbsp;</b>
+		<a href="/activexam/sections?examname=<%=session[:examName] %>"><img src="/images/continue_btn.png" alt="Continue"  border="0" /> </a>
+		    </td>
+      </tr>
+    </table></td>
+  </tr>
+ 

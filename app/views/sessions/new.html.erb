@@ -1,0 +1,65 @@
+
+
+<tr>
+    <td bgcolor="#FFFFFF"><table width="99%" border="0" align="center" cellpadding="5" cellspacing="0">
+      <tr >
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="20"><div align="center">
+                <h1>LSSSA Login</h1>
+            </div></td>
+          </tr>
+        </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td align="center" bgcolor="#FFFFCC"><% form_tag session_path do -%>
+                <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFFFF">
+                  <tr>
+                    <td colspan="3" align="center">
+                         <% flash.each do |key,value| %>
+                         <div id="flash" class="flash_<%= key %>" >
+                       <span class="message"><%= value %></span>                              </div>
+         <% end -%>                    </td>
+                    </tr>
+                  <tr>
+                    <td width="40%" align="right" valign="middle"><h4>User Name</h4></td>
+                    <td width="3" align="center" valign="middle">:</td>
+                    <td width="49%" align="left" valign="middle"><h4>
+                      <label>
+                      
+					  <input name="login" type="text" id="textfield" size="35" />
+                      </label>
+                    </h4></td>
+                  </tr>
+                  <tr>
+                    <td align="right" valign="middle"><h4>Password</h4></td>
+                    <td width="3" align="center" valign="middle">:</td>
+                    <td align="left" valign="middle"><h4>
+                      
+					  <input name="password" type="password" id="textfield2" size="35" />
+                    </h4></td>
+                  </tr>
+                  <tr>
+                   <td colspan="3" align="center" valign="middle" bgcolor="#FFFFCC">Incase you forgot your login credentials, please recover your user name and password using the  following link: <a href="/forgot_password">Forgot Password?</a></td>
+                    </tr>
+                  <tr>
+                    <td height="35" colspan="2" align="right" valign="middle"><label>
+                      <input name="remember_me" type="checkbox" id="checkbox" checked="checked" />
+					  
+                    </label>
+                    Remember me on this computer</td>
+                    <td align="left" valign="middle"><label>
+                      <%= submit_tag 'Click here to Login' %>
+                    </label></td>
+                  </tr>
+                  <tr>
+                    <td height="20" colspan="3" align="center" valign="middle" bgcolor="#FBDD37"><a href="/signup">New user? Click here to register with LSSSA &gt;</a></td>
+                  </tr>
+                </table>
+              <% end %>             </td>
+              </tr>
+          </table>
+          </td>
+      </tr>
+    </table></td>
+  </tr>

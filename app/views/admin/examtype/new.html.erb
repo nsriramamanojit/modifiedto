@@ -1,0 +1,57 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+				<div align="right"><a href="/admin/examtype/list"><b>Back</b></a></div><br>
+		 <% form_for(:examtype, @examtype, :url => {:action=>'create'}) do |form| %>         
+			<table class="main_form" cellspacing="0" cellpadding="4" border="0"  width="700">
+				<tr><td align="center" colspan="2"><h3><font color="green">Add New Exam Type</font></h3></td></tr>
+				<tr><td colspan="2" align="center">
+						<font size="-1" color="#ff0000">
+						Note:Fields marked with(*) are compulsory. 
+							</font>
+					</td>
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Exam Type<font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>				
+					<td><%= form.text_field :examtype ,:size=>'45' ,:maxlength=>'20',:id=>'examtype' %>
+					
+					<font color="red"><%= error_message_on @examtype,'examtype'%></font>
+					<script type="text/javascript">
+						var examtype = new LiveValidation('examtype',{onlyOnSubmit: true});
+						examtype.add( Validate.Presence);
+						examtype.add( Validate.Length, { maximum: 20 } )
+					</script>
+					</td>			
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong> Exam Type Description :</strong></td>					
+					<td><%= form.text_area :examtype_description ,:rows=>2,:cols=>35,:maxlength=>'500',:id=>'typedescription' %>
+					
+					<font color="red"><%= error_message_on @examtype,'examtype_description'%></font>
+					<script type="text/javascript">
+						var typedescription = new LiveValidation('typedescription');
+						typedescription.add(  Validate.Length, { maximum: 500 } )
+					</script>		
+					</td>				
+				</tr>				
+				<tr><td align="right" valign="top" class="label"><strong>Comments :</strong></td>					
+					<td><%= form.text_area :comments ,:rows=>2,:cols=>35,:maxlength=>'500' ,:id=>'comments'%>
+					
+					<font color="red"><%= error_message_on @examtype,'comments'%></font>
+					<script type="text/javascript">
+						var comments = new LiveValidation('comments');
+						comments.add(  Validate.Length, { maximum: 500 })
+					</script>
+					</td>				
+				</tr>				
+				<tr><td colspan="2" align="center"><%= submit_tag "Add Exam Type" %>
+					<input type="reset" value="Reset" name="Cancel"/>
+					</td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+			</table>
+			<% end %><!--end of form -->
+			</div>
+			<!--Related Information -->
+			<% admin_relavant_info @examtypes do |exam|%>
+			<a href="/admin/examtype/show/<%=exam.id%>"><%=exam.examtype%></a><br/>
+				<% end %>
+</div>			
+				

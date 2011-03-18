@@ -1,0 +1,100 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="right"><a href="/admin/sectiontopic/list"><b>Back</b></a></div><br>
+		 <% form_for(:sectiontopic, @sectiontopic, :url => {:action=>'update',:id=>@sectiontopic.id}) do |form| %>          	
+			<table class="main_form" width="700" cellspacing="0" cellpadding="4" border="0">
+				<tr><td align="center" colspan="2"><h3><font color="green">Edit New Section Topic</font></h3></td>	</tr>			
+				<tr>
+					<td colspan="2" align="center">
+						<font size="-1" color="#ff0000">Note:Fields marked with(*)are compulsory. </font>
+					</td>
+				</tr>							
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Exam Template <font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+					<td><%= collection_select(:sectiontopic, :ExamTemplate_id, @examtemplates,:ExamTemplate_Id, :TemplateName,{:prompt=>'Select Exam Template'}) %>
+			          <!--        
+						<font color="red"></font>	
+					 <script type="text/javascript">
+			               var subject_code = new LiveValidation('subject_code',{onlyOnSubmit: true});
+			               subject_code.add( Validate.Presence);
+						 </script>
+						 -->
+					</td>				
+				</tr>		
+				<tr>
+					<td align="right" valign="top" class="label"><strong>Section Template <font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+					<td><%= collection_select(:sectiontopic, :SectionTemplate_id, @sectiontemplates,:SectionTemplate_Id, :SectionTitle,{:prompt=>'Select Section Template'}) %>
+			         <!--        
+						<font color="red"></font>	
+					 <script type="text/javascript">
+			               var subject_code = new LiveValidation('subject_code',{onlyOnSubmit: true});
+			               subject_code.add( Validate.Presence);
+						 </script>
+						 -->
+					</td>				
+				</tr>		
+				
+					<tr>
+					<td align="right" valign="top" class="label"><strong>Topic <font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+					<td><%= form.text_field :Topic,:size=>'45' ,:maxlength=>'50',:id=>'topic' %>
+			                 
+						<font color="red"></font>	
+					 <script type="text/javascript">
+			               var topic = new LiveValidation('topic',{onlyOnSubmit: true});
+			               topic.add( Validate.Presence);
+						 </script>
+						 
+					</td>	
+					
+					<tr>
+					<td align="right" valign="top" class="label"><strong>MaximumQuestions <font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+					<td><%= form.text_field :MaxQuestions,:size=>'45' ,:maxlength=>'3',:id=>'topic' %>
+			          <!--        
+						<font color="red"></font>	
+					 <script type="text/javascript">
+			               var subject_code = new LiveValidation('subject_code',{onlyOnSubmit: true});
+			               subject_code.add( Validate.Presence);
+						 </script>
+						 -->
+					</td>	
+					</tr>	
+					
+					<tr>
+					<td align="right" valign="top" class="label"><strong>Total Questions In The Section <font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+					<td><%= form.text_field :TotalQuestionsInSection,:size=>'3' ,:maxlength=>'1',:id=>'totalquestions' %>
+			          <!--        
+						<font color="red"></font>	
+					 <script type="text/javascript">
+			               var subject_code = new LiveValidation('subject_code',{onlyOnSubmit: true});
+			               subject_code.add( Validate.Presence);
+						 </script>
+						 -->
+					</td>	
+					</tr>	
+					
+					<tr>
+					<td align="right" valign="top" class="label"><strong>Comments <font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+					<td><%= form.text_area :Comments ,:rows=>2,:cols=>35,:maxlength=>'500',:id=>'comments' %>
+			          <!--        
+						<font color="red"></font>	
+					 <script type="text/javascript">
+			               var subject_code = new LiveValidation('subject_code',{onlyOnSubmit: true});
+			               subject_code.add( Validate.Presence);
+						 </script>
+						 -->
+					</td>	
+					</tr>		
+				
+				<tr><td colspan="2" align="center">
+			 <%= form.submit "update" %>
+		</td>	 
+	</tr>
+	<tr><td colspan="2">&nbsp;</td></tr>
+	</table>
+			<% end %><!--end of form -->
+			</div>
+			<!--Related Information -->
+			<% admin_relavant_info @sectiontopics do |sub|%>
+			<a href="/admin/sectiontopic/show/<%=sub.id%>"><%=sub.Topic%></a><br/>
+				<% end %>
+</div>			

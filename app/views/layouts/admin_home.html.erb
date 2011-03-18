@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>LSSSA | Administrator Panel</title>
+        <style type="text/css">
+         <!--
+        
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+        -->
+        </style>
+        <link rel="JTO - BSNL Sample Test Series | JTO - BSNL 2009" href="favicon.ico"/>
+		<%= stylesheet_link_tag 'menu','admin_styles','live_validation', 'admin_listing','style','pagination',:cache=>'cache/admin'%>
+		
+        <%= javascript_include_tag 'prototype','menu','livevalidation_standalone.compressed',:cache=>'cache/admin' %>
+    </head>
+    <body bgcolor="white">
+        <div id="container">
+            <% admin_header do -%>
+            <% end %>
+            <% admin_navigation do -%>
+            <% end -%>
+            <% if session[:admin_id] == nil %>
+            <p align='center'>
+                <%= 'Admin Session is Expired Please click' %>
+                here <a href="/admin/login">
+                <%= 'to login' %></a>
+            </p>
+            <% else %>
+            <%= yield %>
+            <% end %>
+            <% admin_footer do -%>
+            <% end -%>
+        </div>
+		
+    </body>
+</html>

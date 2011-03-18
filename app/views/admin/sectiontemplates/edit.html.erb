@@ -1,0 +1,467 @@
+<script type="text/javascript">
+    function enableAttemptsField(rdbtn){ /* when radiobutton No is clicked*/
+        if (document.getElementById) {
+            if (rdbtn.checked == true) {
+                document.getElementById('SectionMinAttempts').disabled = false;
+                document.getElementById('SectionMinAttempts').value = '<%= @sectiontemplate.SectionMinAttempts %>';
+            }
+        }
+    }
+    
+    function disableAttemptsField(rdbtn){ /* when radiobutton Yes is clicked*/
+        if (document.getElementById) {
+            if (rdbtn.checked == true) {
+                document.getElementById('SectionMinAttempts').disabled = true;
+                document.getElementById('SectionMinAttempts').value = 1;
+            }
+        }
+    }
+</script>
+<div id="shellcontainer">
+    <div id="shellleft">
+        <div align="right">
+            <a href="/admin/sectiontemplates/index"><b>Back</b></a>
+        </div>
+        <br>
+        <% form_for(:sectiontemplate,@sectiontemplate ,:url => {:action=>'update',:id => @sectiontemplate}) do |f| %>
+        <!--<%= f.error_messages %>-->
+        <table class="main_form" cellspacing="0" cellpadding="2" border="0" width="700">
+            <tr>
+                <td align="center" colspan="2">
+                    <h3>
+                        <font color="green">
+                            Edit Section Template
+                        </font>
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <font size="-1" color="#ff0000">
+                        Note:Fields marked with(*)are compulsory. 
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Exam Template Name
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= collection_select(:sectiontemplate, :ExamTemplate_Id, @examtemplates, :ExamTemplate_Id, :TemplateName,{:prompt=>'Select examtemplate'}) %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'ExamTemplate_Id' %>
+                    </font>
+                    <script type="text/javascript">
+                        var sectiontemplate_ExamTemplate_Id = new LiveValidation('sectiontemplate_ExamTemplate_Id', {
+                            onlyOnSubmit: true
+                        });
+                        sectiontemplate_ExamTemplate_Id.add(Validate.Presence, {
+                            failureMessage: "Select ExamTemplate Name!"
+                        })
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Subject Name
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= collection_select(:sectiontemplate, :Subject_Id, @subjects, :id, :subject_name,{:prompt=>'Select Subject'}) %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'Subject_Id' %>
+                    </font>
+                    <script type="text/javascript">
+                        var sectiontemplate_Subject_Id = new LiveValidation('sectiontemplate_Subject_Id', {
+                            onlyOnSubmit: true
+                        });
+                        sectiontemplate_Subject_Id.add(Validate.Presence, {
+                            failureMessage: "Select SubjectName!"
+                        })
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Section Title
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= f.text_field :SectionTitle ,:size=>'45' ,:maxlength=>'45',:id=>'SectionTitle' %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionTitle' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionTitle = new LiveValidation('SectionTitle', {
+                            onlyOnSubmit: true
+                        });
+                        SectionTitle.add(Validate.Presence);
+                    </script>
+                </td>
+            </tr>
+			<tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Section Tags
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= f.text_field :SectionTags ,:size=>'45' ,:maxlength=>'450',:id=>'SectionTitle' %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionTags' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionTags = new LiveValidation('SectionTags', {
+                            onlyOnSubmit: true
+                        });
+                        SectionTags.add(Validate.Presence);
+                    </script>
+                </td>
+            </tr>
+			
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td align="right" class="label">
+                                <strong>Section Description :</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" class="label">
+                                ( not shown on Questionpaper )
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <%= f.text_area :SectionDescription ,:cols=>34,:rows=>2,:maxlength=>500,:id=>'SectionDescription' %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionDescription' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionDescription = new LiveValidation('SectionDescription');
+                        SectionDescription.add(Validate.Length, {
+                            maximum: 500
+                        });
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td align="right" class="label">
+                                <strong>Instructions :</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" class="label">
+                                ( shown on Questionpaper )
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <%= f.text_area :SectionInstructions ,:cols=>34,:rows=>2,:maxlength=>1000,:id=>'SectionInstructions' %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionInstructions' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionInstructions = new LiveValidation('SectionInstructions');
+                        SectionInstructions.add(Validate.Length, {
+                            maximum: 1000
+                        });
+                    </script>
+                </td>
+            </tr>
+            <!--
+            <tr><td align="right" valign="top" class="label"><strong>Section Single Attempt Only :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+            <td>
+            <% if @sectiontemplate.SectionSingleAttemptOnly==true%>
+            <input type="radio" id="SectionSingleAttemptOnly" name="sectiontemplate[SectionSingleAttemptOnly]" checked="checked" value="1" onclick="disableAttemptsField(this)"/>Yes
+            <input type="radio" id="SectionSingleAttemptOnly" name="sectiontemplate[SectionSingleAttemptOnly]" value="0" onclick="enableAttemptsField(this)"/>No
+            <% else %>
+            <input type="radio" id="SectionSingleAttemptOnly" name="sectiontemplate[SectionSingleAttemptOnly]"  value="1" onclick="disableAttemptsField(this)"/>Yes
+            <input type="radio" id="SectionSingleAttemptOnly" name="sectiontemplate[SectionSingleAttemptOnly]" checked="checked" value="0" onclick="enableAttemptsField(this)"/>No
+            <% end %>
+            
+            </td>
+            </tr>
+            -->
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Duration in Minutes
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= f.text_field :SectionDurationMinutes ,:size=>'45',:id=>'SectionDurationMinutes',:maxlength=>3 %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionDurationMinutes' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionDurationMinutes = new LiveValidation('SectionDurationMinutes', {
+                            onlyOnSubmit: true
+                        });
+                        SectionDurationMinutes.add(Validate.Presence)
+                        SectionDurationMinutes.add(Validate.Numericality)
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Number of Questions
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= f.text_field :SectionNumQuestions ,:size=>'45',:id=>'SectionNumQuestions',:maxlength=>3 %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionNumQuestions' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionNumQuestions = new LiveValidation('SectionNumQuestions', {
+                            onlyOnSubmit: true
+                        });
+                        SectionNumQuestions.add(Validate.Presence)
+                        SectionNumQuestions.add(Validate.Numericality)
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Positive Marks
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= f.text_field :SectionPositiveMarks ,:size=>'45',:id=>'SectionPositiveMarks',:maxlength=>3 %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionPositiveMarks' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionPositiveMarks = new LiveValidation('SectionPositiveMarks', {
+                            onlyOnSubmit: true
+                        });
+                        SectionPositiveMarks.add(Validate.Presence)
+                        SectionPositiveMarks.add(Validate.Numericality)
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Negative Marks
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <%= f.text_field :SectionNegativeMarks ,:size=>'45',:id=>'SectionNegativeMarks',:maxlength=>3 %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionNegativeMarks' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionNegativeMarks = new LiveValidation('SectionNegativeMarks', {
+                            onlyOnSubmit: true
+                        });
+                        SectionNegativeMarks.add(Validate.Presence)
+                        SectionNegativeMarks.add(Validate.Numericality)
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Minimum Attempts
+                        <font face="Verdana" color="#e30102" size="-2">
+                            *
+                        </font>
+                        :
+                    </strong>
+                </td>
+                <td>
+                    <!--
+                    <% if @sectiontemplate.SectionSingleAttemptOnly==true%>
+                    <%= f.text_field :SectionMinAttempts ,:size=>'45',:id=>'SectionMinAttempts',:maxlength=>3,:disabled => "disabled"%>
+                    <% else %>
+                    <%= f.text_field :SectionMinAttempts ,:size=>'45',:id=>'SectionMinAttempts',:maxlength=>3%>
+                    <% end %>
+                    --><%= f.text_field :SectionMinAttempts ,:size=>'45',:id=>'SectionMinAttempts',:maxlength=>3,:disabled => "disabled" %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'SectionMinAttempts' %>
+                    </font>
+                    <script type="text/javascript">
+                        var SectionMinAttempts = new LiveValidation('SectionMinAttempts', {
+                            onlyOnSubmit: true
+                        });
+                        SectionMinAttempts.add(Validate.Presence)
+                        SectionMinAttempts.add(Validate.Numericality)
+                    </script>
+                </td>
+            </tr>
+            <!--<tr><td align="right" valign="top" class="label"><strong>Minimum TagMatch<font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+            <td>
+            <%= f.text_field :SectionMinimumTagMatch ,:size=>'45',:id=>'SectionMinimumTagMatch',:maxlength=>3,:disabled => "disabled"%>
+            
+            <font color="red"><%= error_message_on @sectiontemplate,'SectionMinimumTagMatch'%></font>
+            <script type="text/javascript">
+            var SectionMinimumTagMatch = new LiveValidation('SectionMinimumTagMatch',{onlyOnSubmit: true});
+            SectionMinimumTagMatch.add( Validate.Presence)
+            SectionMinimumTagMatch.add( Validate.Numericality)
+            </script>
+            </td>
+            </tr>
+            <tr><td align="right" valign="top" class="label"><strong>Section Tags<font face="Verdana" color="#e30102" size="-2">*</font> :</strong></td>
+            <td>
+            <%= f.text_area :SectionTags,:rows=>"2" ,:cols=>"35",:maxlength=>500,:id=>'sectiontags'%>
+            
+            <font color="red"><%= error_message_on @sectiontemplate,'SectionTags'%></font>
+            <script type="text/javascript">
+            var sectiontags = new LiveValidation('sectiontags');
+            sectiontags.add(Validate.Length, {  maximum: 500 });
+            </script>
+            </td>
+            </tr>	-->
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Comments :</strong>
+                </td>
+                <td>
+                    <%= f.text_area :Comments ,:rows=>"2" ,:cols=>"34",:maxlength=>1000,:id=>'comments' %>
+                    
+                    <font color="red">
+                        <%= error_message_on @sectiontemplate,'Comments' %>
+                    </font>
+                    <script type="text/javascript">
+                        var comments = new LiveValidation('comments');
+                        comments.add(Validate.Length, {
+                            maximum: 1000
+                        });
+                    </script>
+                </td>
+            </tr>
+            <% if @sectiontemplate.Included == false %>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <input type="checkbox" name="include" id="include">
+                </td>
+                <td valign="top" class="label">
+                    <strong>Include in Section ? ( Yes / No ) </strong>
+                </td>
+            </tr>
+            <%else %>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <input type="checkbox" name="include" id="include" checked='true'>
+                </td>
+                <td valign="top" class="label">
+                    <strong>Include in Section ? ( Yes / No ) </strong>
+                </td>
+            </tr>
+            <%end %>
+            <% if @sectiontemplate.SectionStatus == 'active' %>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Section Status :</strong>
+                </td>
+                <td>
+                    <input type="radio" id="SectionStatus" name='SectionStatus' checked="true" value="active">Active<input type="radio" id="SectionStatus" name='SectionStatus' value="inactive">Inactive 
+                </td>
+            </tr><% else %>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Section Status :</strong>
+                </td>
+                <td>
+                    <input type="radio" id="SectionStatus" name='SectionStatus' value="active">Active<input type="radio" id="SectionStatus" name='SectionStatus' checked="true" value="inactive">Inactive 
+                </td>
+            </tr><% end %>
+            <!--<tr><td align="right" valign="top" class="label"><strong>Section Complete :</strong></td>
+            <td><%= f.text_field :SectionComplete ,:size=>'45'%>
+            </td>
+            </tr>--><% if @sectiontemplate.SuitableQuestionChosenBy == "LastModified" %>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Suitable Question Chosen by :</strong>
+                </td>
+                <td>
+                    <input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' checked="true" value="LastModified">LastModified<input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' value="EarliestModified">EarliestModified <input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' value="Random">Random 
+                </td>
+            </tr><% elsif @sectiontemplate.SuitableQuestionChosenBy == "EarliestModified" %>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Suitable Question ChoosenBy :</strong>
+                </td>
+                <td>
+                    <input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' value="LastModified">LastModified<input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' checked="true" value="EarliestModified">EarliestModified <input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' value="Random">Random 
+                </td>
+            </tr><% else %>
+            <tr>
+                <td align="right" valign="top" class="label">
+                    <strong>Suitable Question ChoosenBy :</strong>
+                </td>
+                <td>
+                    <input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' value="LastModified">LastModified<input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' value="EarliestModified">EarliestModified <input type="radio" id="SuitableQuestionChosenBy" name='SuitableQuestionChosenBy' checked="true" value="Random">Random 
+                </td>
+            </tr><% end %>
+            <!--<tr><td align="right" valign="top" class="label"><strong>After All Sections Done :</strong></td>
+            <td><%= f.text_field :AfterAllSectionsDone ,:size=>'45'%>
+            </td>
+            </tr>-->
+            <tr>
+                <td colspan="2" align="center">
+                    <%= f.submit "Update" %>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+        <% end %>
+    </div>
+    <!--Related Information --><% admin_relavant_info @sectiontemplates do |st| %>
+    <a href="/admin/sectiontemplates/show/<%=st.id%>"><%=st.SectionTitle %></a>
+    <br/>
+    <% end %>
+</div>

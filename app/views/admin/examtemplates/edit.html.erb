@@ -1,0 +1,115 @@
+<div id="shellcontainer">
+	<div id="shellleft">
+<div align="right"><a href="/admin/examtemplates/index"><b>Back</b></a></div><br>
+<% form_for(:examtemplate, @examtemplate, :url => {:action=>'update',:id => @examtemplate}) do |f| %>
+<table  class="main_form" cellspacing="0" cellpadding="4" border="0"  width="700">
+	<tr><td align="center" colspan="2"><h3><font color="green">Edit Exam Template</font></h3></td></tr>
+	<tr>
+			<td colspan="2" align="center">
+				<font size="-1" color="#ff0000">Note:Fields marked with (*) are compulsory. </font>
+			</td>
+		</tr>
+	<tr><td align="right" valign="top" class="label"><strong>Exam Type :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+		<td>
+			 <%= collection_select(:examtemplate, :ExamType_Id, @examtypes, :id, :examtype,{:prompt=>'Select examtype'}) %>			
+			  
+			  <font color="red"><%= error_message_on @examtemplate,'ExamType_Id'%></font>
+			 <script type="text/javascript">
+						var examtemplate_ExamType_Id = new LiveValidation('examtemplate_ExamType_Id',{onlyOnSubmit: true});
+						examtemplate_ExamType_Id.add(Validate.Presence, {failureMessage: "Select ExamType!"})
+		             </script>
+		</td>
+	</tr>	
+	<tr><td align="right" valign="top" class="label"><strong>Template Name :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+		<td>
+			  <%= f.text_field :TemplateName ,:size=>'45' ,:maxlength=>'45',:id=>'TemplateName'%>
+			  
+								<font color="red"><%= error_message_on @examtemplate,'TemplateName'%></font>
+								<script type="text/javascript">
+						var TemplateName = new LiveValidation('TemplateName',{onlyOnSubmit: true});
+						TemplateName.add( Validate.Presence)
+					</script>	 	
+		</td>
+	</tr>	
+	<tr><td align="right" valign="top" class="label"><strong>Total Duration Minutes :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+		<td>
+			<%= f.text_field :TotalDurationMinutes ,:size=>'45',:maxlength=>'3',:id=>'TotalDurationMinutes'%>
+			
+								<font color="red"><%= error_message_on @examtemplate,'TotalDurationMinutes'%></font>
+								<script type="text/javascript">
+						var TotalDurationMinutes = new LiveValidation('TotalDurationMinutes',{onlyOnSubmit: true});
+						TotalDurationMinutes.add( Validate.Presence)
+						TotalDurationMinutes.add( Validate.Numericality)
+					</script>	 	
+		</td>
+	</tr>	
+	<tr><td align="right" valign="top" class="label"><strong>Number Of Sections :</strong><font face="Verdana" color="#e30102" size="-2">*</font></td>
+		<td>
+			<%= f.text_field :NumberOfSections ,:size=>'45',:maxlength=>'3',:id=>'NumberOfSections'%>
+			
+								<font color="red"><%= error_message_on @examtemplate,'NumberOfSections'%></font>
+								<script type="text/javascript">
+						var NumberOfSections = new LiveValidation('NumberOfSections',{onlyOnSubmit: true});
+						NumberOfSections.add( Validate.Presence)
+						NumberOfSections.add( Validate.Numericality)
+					</script>	 
+		</td>
+	</tr>	
+	<tr><td align="right" valign="top" class="label"><strong>Template Heading :</strong></td>
+		<td>
+			<%= f.text_field :TemplateHeading ,:size=>'45' ,:maxlength=>'100',:id=>'TemplateHeading'%>		
+			 
+								<script type="text/javascript">
+						var TemplateHeading = new LiveValidation('TemplateHeading');
+						TemplateHeading.add(  Validate.Length, { maximum: 100 } )
+					</script>	 
+		</td>
+	</tr>	
+	<tr><td align="right" valign="top" class="label"><strong>Template Instructions :</strong></td>	
+		<td>
+			 <%= f.text_area :TemplateInstructions ,:cols=>35,:rows=>2,:maxlength=>'1000',:id=>'TemplateInstructions'%>
+			 
+					<font color="red"><%= error_message_on @examtemplate,'TemplateInstructions'%></font>		
+					<script type="text/javascript">
+						var TemplateInstructions = new LiveValidation('TemplateInstructions');
+						TemplateInstructions.add(  Validate.Length, { maximum: 1000 } )
+					</script>	 		 
+		</td>
+	</tr>	
+	<tr><td align="right" valign="top" class="label"><strong>Template Description :</strong></td>
+		<td>
+			<%= f.text_area :TemplateDescription,:rows=>"2" ,:cols=>"35",:maxlength=>'1000',:id=>'TemplateDescription' %>
+			 
+					<font color="red"><%= error_message_on @examtemplate,'TemplateDescription'%></font>		
+					<script type="text/javascript">
+						var TemplateDescription = new LiveValidation('TemplateDescription');
+						TemplateDescription.add(  Validate.Length, { maximum:1000 } )
+					</script>		
+		</td>
+	</tr>	
+	<tr><td align="right" valign="top" class="label"><strong>Comments : </strong></td>
+		<td>
+			 <%= f.text_area :Comments ,:rows=>"2" ,:cols=>"35",:maxlength=>'500',:id=>'Comments'%>
+			 
+					<font color="red"><%= error_message_on @examtemplate,'Comments'%></font>
+					<script type="text/javascript">
+						var Comments = new LiveValidation('Comments');
+						Comments.add(  Validate.Length, { maximum: 500 } )
+					</script>	
+		</td>
+	</tr>	
+	<tr><td colspan="2" align="center">
+			<%= f.submit "Update" %><br /> 
+		</td>
+	</tr>
+	<tr><td colspan="2">&nbsp;</td></tr>
+	</table>
+<% end %>
+ </div>
+			<!--Related Information -->
+			<% admin_relavant_info @examtemplates do |exam|%>
+			<a href="/admin/examtemplates/show/<%=exam.id%>"><%=exam.TemplateName%></a><br/>
+				<% end %>
+</div>			
+
+	

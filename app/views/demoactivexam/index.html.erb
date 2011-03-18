@@ -1,0 +1,166 @@
+<script type="text/javascript">
+    var mins
+    var secs;
+    
+    function countDown(){
+        mins = 1 * minutes("<%=@totalduration%>"); // change minutes here
+        secs = 0 + seconds(":01"); // change seconds here (always add an additional second to your total)
+        redo();
+    }
+    
+    function minutes(obj){
+        for (var i = 0; i < obj.length; i++) {
+            if (obj.substring(i, i + 1) == ":") 
+                break;
+        }
+        return (obj.substring(0, i));
+    }
+    
+    function seconds(obj){
+        for (var i = 0; i < obj.length; i++) {
+            if (obj.substring(i, i + 1) == ":") 
+                break;
+        }
+        return (obj.substring(i + 1, obj.length));
+    }
+    
+    function dis(mins, secs){
+        var disp;
+        if (mins <= 9) {
+            disp = " 0";
+        }
+        else {
+            disp = " ";
+        }
+        disp += mins + ":";
+        if (secs <= 9) {
+            disp += "0" + secs;
+        }
+        else {
+            disp += secs;
+        }
+        return (disp);
+    }
+    
+    function redo(){
+        secs--;
+        if (secs == -1) {
+            secs = 59;
+            mins--;
+        }
+        document.getElementById('disp').value = dis(mins, secs); // setup additional displays here.
+        if ((mins == 0) && (secs == 0)) {
+            window.alert("Exam Time is up. Press OK to continue view your score."); // change timeout message as required
+            window.location = "/demoactivexam/exam_complete" // redirects to specified page once timer ends and ok button is pressed
+        }
+        else {
+            cd = setTimeout("redo()", 1000);
+        }
+    }
+    
+    function init(){
+        countDown();
+        setFirstQuestion();
+    }
+    
+    window.onload = init;
+    
+    function setFirstQuestion(){
+    
+        firstQpointer = document.getElementById('currentQpointer').value;
+        document.getElementById('cf' + firstQpointer).innerHTML = ">>";
+    }
+    
+    var firstQpointer;
+    function qSelected(id){
+    
+        // Check to see if the previus_id has been initialized
+        if (typeof qSelected.previous_id == 'undefined') {
+            // It has not been defined yet ... define and initialize it
+            qSelected.previous_id = id;
+            document.getElementById('cf' + qSelected.previous_id).innerHTML = ">>";
+            document.getElementById('cf' + firstQpointer).innerHTML = " ";
+        }
+        else {
+            // Reset previous id before setting the current one
+            document.getElementById('cf' + qSelected.previous_id).innerHTML = " ";
+            qSelected.previous_id = id;
+            document.getElementById('cf' + id).innerHTML = ">>";
+            document.getElementById('currentQpointer').value = id;
+        }
+    }
+</script>
+<script type="text/javascript">
+		function examendAlert(){
+		var answer = confirm("You are about to end your Demo JTO - BSNL Test. If you really want to quit, please click OK. Otherwise, please click Cancel")
+if (answer)
+window.location ="/demoactivexam/exam_complete"
+	}
+	</script>	
+<td align="center">
+    <h1><%=session[:examName]%> Exam</h1>
+</td>
+<td><b>Date: </b><%=Time.now.strftime("%d-%m-%Y")%></td>
+<!-- Insert Server Timestamp here -->
+<td align="right" width="250">
+  <!--<b> Current Time: </b><%=Time.now.strftime("%H:%M:%S") %> -->
+</td>
+</tr>
+</table>
+</div>
+<!-- END OF HEADER DIV --><!-- DIV BODYSHELL Container for Left Navigation and Body Content -->
+<div id="bodyshell">
+    <div id="leftnavigation">
+        <%= render :partial => 'question_left_navigation' ,:object=>@section_questions_with_default_answers ,:layout=>false%>
+    </div>
+    <div id="bodycontent">
+        <div id="sectionname" align="center">
+            <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFECEC" align="center">
+          <tr>
+                    <td align="left">
+                        <%= render :partial => 'current_section_name' ,:layout=>false %>
+                    </td>
+                    <td align="right">
+                        <input id="disp" readonly="true" type="text" border="0" name="disp" size="4"><b>Minutes Left</b>
+                    </td>
+                </tr>
+            </table>
+      </div><!-- Question Div Starting Here -->
+        <div id="question">
+        
+            <iframe src="/demoqueoperations/question_by_code?qCode=<%=@Studentexams.CurrentQuestionCode%>&qId=<%=@Studentexams.CurrentQuestionPointer%>&secTId=<%=@sectionTemplateId%>" name = "qFrame" width="98%" height="450px" frameborder="0";>
+            	
+            
+            </iframe>
+        </div>
+        <!-- End of Question Div --><!-- Start Navigation Div -->
+        <div id="testnavigation">
+            <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                <!-- Current Question Pointer Hidden Field --><!-- When the page gets loaded for the first time set this value to first question in current section --><input type="hidden" id="currentQpointer" value="q<%= @currentQuestionPointer %>">
+                
+                <tr>
+                    <td colspan="4">&nbsp;
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%" bgcolor="#CC0000">
+                  <div align="center">
+                            <span class="whitetext">Go to:</span>                        </div>
+                  </td>
+              <td>
+                        <%= render :partial => 'other_section_names' ,:layout=>false%>
+                    </td>
+                </tr>
+				<tr>
+                    <td colspan="4" align="right" valign="middle">
+                        <div align="right">
+                            <a href="#"><img src="/images/test_complete.png" alt="I have completed the test" width="182" height="23" border="0" onclick="examendAlert();" /></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- END OF BODYSHELL DIV -->

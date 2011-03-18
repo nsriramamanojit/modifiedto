@@ -1,0 +1,46 @@
+<style>#shellleft a:link{	
+	background-color:rgb(205, 237, 249);	
+}
+</style>
+<div id="shellcontainer">
+	<div id="shellleft">
+		<div align="center"><a href="/admin/servicetypes/new"><b>Add NewServiceType</b></a></div><br/>
+		 <%if @servicetypes.blank? %>
+                <p>
+                    Currently No Servicestypes are available
+                </p>
+                <% else %>
+					
+		<table height="54" cellspacing="2" cellpadding="2"  align="center" width="700">
+                <tr align="center">
+				    <td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">ServiceType Name</td>	
+					 <td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Enabled</td>				
+					<td align="center" width="10%" style="background: rgb(57, 111, 175) none repeat scroll 0% 0%; color: rgb(251, 244, 49); -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="rtdetails">Edit</td>
+			    </tr>	
+				<% @servicetypes.each do |servicetype| %>	
+				<tr align="center">
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/servicetypes/show/<%=servicetype.id%>"><%=h servicetype.service_type %></a></td>
+					<td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><%=h servicetype.servicetype_enabled%></td>								
+				   <td align="center" style="background: rgb(205, 237, 249) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" class="mainscentry"><a href="/admin/servicetypes/edit/<%=servicetype.id%>">Edit</a></td>
+				</tr>
+				<% end %><!--end of iteration -->
+			</table>	
+			<% end %><!--end of if else (empty) -->
+		<br />
+		
+			</div>
+			<% admin_relavant_info @servicetypes do |exam|%>
+			<a href="/admin/servicetypes/show/<%=exam.id%>"><%=exam.service_type%></a><br/>
+				<% end %>
+					
+</div>
+
+
+
+
+
+
+
+
+
+

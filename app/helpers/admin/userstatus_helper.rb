@@ -1,0 +1,2 @@
+module Admin::UserstatusHelper
+end
